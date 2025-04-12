@@ -18,7 +18,7 @@ jobs:
       - name: Pack
         run: ./.ci/source.sh
       - name: Upload
-        uses: actions/upload-artifact@v4
+        uses: forgejo/upload-artifact@v4
         with:
           name: source
           path: artifacts/
@@ -141,7 +141,7 @@ jobs:
           Copy-Item "README*" -Destination "$RELEASE_DIST" -ErrorAction SilentlyContinue
       - name: Upload Windows artifacts
         if: steps.build.outcome == 'success'
-        uses: actions/upload-artifact@v4
+        uses: forgejo/upload-artifact@v4
         with:
           name: ${{ matrix.target }}
           path: artifacts/*
@@ -185,7 +185,7 @@ jobs:
           ./.ci/package-appimage.sh "${{ github.ref_name }}"
 
       - name: Upload Linux artifacts
-        uses: actions/upload-artifact@v4
+        uses: forgejo/upload-artifact@v4
         with:
           name: linux
           path: artifacts/*
@@ -249,7 +249,7 @@ jobs:
           ls -la "${ARTIFACTS_DIR}/"
 
       - name: Upload Android artifacts
-        uses: actions/upload-artifact@v4
+        uses: forgejo/upload-artifact@v4
         with:
           name: android
           path: artifacts/*
