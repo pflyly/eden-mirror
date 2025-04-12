@@ -10,7 +10,7 @@ on:
 jobs:
   source:
     if: ${{ !github.head_ref }}
-    runs-on: ubuntu-latest
+    runs-on: linux
     steps:
       - uses: actions/checkout@v4
         with:
@@ -71,18 +71,18 @@ jobs:
         shell: cmd
         run: |
           C:\tools\cygwin\cygwinsetup.exe -q -P autoconf,automake,libtool,make,pkg-config
-          
+
           REM Create wrapper batch files for Cygwin tools in a directory that will be in PATH
           mkdir C:\cygwin-wrappers
-          
+
           REM Create autoconf.bat wrapper
           echo @echo off > C:\cygwin-wrappers\autoconf.bat
           echo C:\tools\cygwin\bin\bash.exe -l -c "autoconf %%*" >> C:\cygwin-wrappers\autoconf.bat
-          
+
           REM Add other wrappers if needed for other Cygwin tools
           echo @echo off > C:\cygwin-wrappers\automake.bat
           echo C:\tools\cygwin\bin\bash.exe -l -c "automake %%*" >> C:\cygwin-wrappers\automake.bat
-          
+
           REM Add the wrappers directory to PATH
           echo C:\cygwin-wrappers>>"%GITHUB_PATH%"
           echo C:\tools\cygwin\bin>>"%GITHUB_PATH%"
@@ -99,7 +99,7 @@ jobs:
         run: |
           cd build
           ninja yuzu yuzu-cmd yuzu-room tests
-          ccache -s -v        
+          ccache -s -v
       - name: Package artifacts
         if: steps.build.outcome == 'success'
         shell: pwsh
@@ -108,35 +108,35 @@ jobs:
           $GITREV = $(git show -s --format='%h')
           $RELEASE_DIST = "eden-windows-msvc"
           $ARTIFACTS_DIR = "${{ github.workspace }}/artifacts"
-          
+
           mkdir -p $ARTIFACTS_DIR
           mkdir -p $RELEASE_DIST
           mkdir -p pdb
-          
+
           Copy-Item "build/bin/Release/*" -Destination "$RELEASE_DIST" -Recurse -ErrorAction SilentlyContinue
           if (-not $?) {
             # Try without Release subfolder if that doesn't exist
             Copy-Item "build/bin/*" -Destination "$RELEASE_DIST" -Recurse -ErrorAction SilentlyContinue
           }
-          
+
           Get-ChildItem "build/bin/" -Recurse -Filter "*.pdb" | Copy-Item -destination .\pdb -ErrorAction SilentlyContinue
-          
+
           $BUILD_ZIP = "eden-windows-msvc-$GITDATE-$GITREV.zip"
           $BUILD_PDB = "eden-windows-msvc-$GITDATE-$GITREV-debugsymbols.zip"
           $BUILD_7Z = "eden-windows-msvc-$GITDATE-$GITREV.7z"
-          
+
           7z a -tzip $BUILD_ZIP $RELEASE_DIST\*
-          
+
           if (Test-Path -Path ".\pdb\*.pdb") {
             7z a -tzip $BUILD_PDB .\pdb\*.pdb
             Move-Item $BUILD_PDB $ARTIFACTS_DIR/ -ErrorAction SilentlyContinue
           }
-          
+
           7z a $BUILD_7Z $RELEASE_DIST
-          
+
           Move-Item $BUILD_ZIP $ARTIFACTS_DIR/ -ErrorAction SilentlyContinue
           Move-Item $BUILD_7Z $ARTIFACTS_DIR/ -ErrorAction SilentlyContinue
-          
+
           Copy-Item "LICENSE*" -Destination "$RELEASE_DIST" -ErrorAction SilentlyContinue
           Copy-Item "README*" -Destination "$RELEASE_DIST" -ErrorAction SilentlyContinue
       - name: Upload Windows artifacts
@@ -146,16 +146,13 @@ jobs:
           name: ${{ matrix.target }}
           path: artifacts/*
   linux:
-    runs-on: ubuntu-latest
+    runs-on: linux
     env:
       CCACHE_DIR: ${{ github.workspace }}/.ccache
       CCACHE_COMPILERCHECK: content
       CCACHE_SLOPPINESS: time_macros
       OS: linux
-      TARGET: fresh 
-    container:
-      image: icybriar/eden-build-environment:latest
-      options: -u 1001
+      TARGET: fresh
     steps:
       - uses: actions/checkout@v4
         with:
@@ -182,11 +179,11 @@ jobs:
 
       - name: Build
         run: ./.ci/linux.sh
-        
+
       - name: Package AppImages
         run: |
           ./.ci/package-appimage.sh "${{ github.ref_name }}"
-      
+
       - name: Upload Linux artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -237,20 +234,20 @@ jobs:
           GITREV="$(git show -s --format='%h')"
           ARTIFACTS_DIR="$PWD/artifacts"
           mkdir -p "${ARTIFACTS_DIR}/"
-          
+
           REV_NAME="eden-android-${GITDATE}-${GITREV}"
           BUILD_FLAVOR="mainline"
           BUILD_TYPE_LOWER="release"
           BUILD_TYPE_UPPER="Release"
-          
+
           cp src/android/app/build/outputs/apk/"${BUILD_FLAVOR}/${BUILD_TYPE_LOWER}/app-${BUILD_FLAVOR}-${BUILD_TYPE_LOWER}.apk" \
              "${ARTIFACTS_DIR}/${REV_NAME}.apk" || echo "APK not found"
-          
+
           cp src/android/app/build/outputs/bundle/"${BUILD_FLAVOR}${BUILD_TYPE_UPPER}"/"app-${BUILD_FLAVOR}-${BUILD_TYPE_LOWER}.aab" \
              "${ARTIFACTS_DIR}/${REV_NAME}.aab" || echo "AAB not found"
-             
+
           ls -la "${ARTIFACTS_DIR}/"
-          
+
       - name: Upload Android artifacts
         uses: actions/upload-artifact@v4
         with:
