@@ -6,7 +6,7 @@ on:
 
 jobs:
   license-header:
-    runs-on: ubuntu-latest
+    runs-on: linux
     container:
       image: opensauce04/lime3ds-build:latest
       options: -u 1001
