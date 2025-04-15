@@ -164,13 +164,13 @@ jobs:
 
       - name: Package AppImages
         run: |
-          ./.ci/package-appimage.sh "${{ github.ref_name }}"
+          ./AppImage-build-local.sh
 
       - name: Upload Linux artifacts
         uses: forgejo/upload-artifact@v4
         with:
           name: linux.zip
-          path: artifacts/*
+          path: *.AppImage
 
   android:
     runs-on: android
