@@ -1,5 +1,4 @@
 # TODO: This document needs to be formatted,
-# appimage should use linuxdeploy probably
 # some stuff needs cleaned up etc
 name: eden-build
 
@@ -160,17 +159,18 @@ jobs:
           fetch-tags: true
 
       - name: Build
-        run: ./.ci/linux.sh
-
-      - name: Package AppImages
         run: |
-          ./AppImage-build-local.sh
+          ./.ci/linux.sh v3 4
+
+      - name: Package AppImage
+        run: |
+          ./.ci/package-appimage.sh v3
 
       - name: Upload Linux artifacts
         uses: forgejo/upload-artifact@v4
         with:
           name: linux.zip
-          path: *.AppImage
+          path: ./*.AppImage
 
   android:
     runs-on: android

@@ -7,9 +7,6 @@ on:
 jobs:
   license-header:
     runs-on: linux
-    container:
-      image: opensauce04/lime3ds-build:latest
-      options: -u 1001
     steps:
       - uses: actions/checkout@v4
         with:
