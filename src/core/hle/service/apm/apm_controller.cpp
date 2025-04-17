@@ -7,7 +7,6 @@
 
 #include "common/logging/log.h"
 #include "common/settings.h"
-#include "common/settings_enums.h"
 #include "core/core_timing.h"
 #include "core/hle/service/apm/apm_controller.h"
 
@@ -81,8 +80,10 @@ PerformanceConfiguration Controller::GetCurrentPerformanceConfiguration(Performa
 
 void Controller::SetClockSpeed(u32 mhz) {
     LOG_DEBUG(Service_APM, "called, mhz={:08X}", mhz);
-    // TODO(DarkLordZach): Actually signal core_timing to change clock speed.
-    // TODO(Rodrigo): Remove [[maybe_unused]] when core_timing is used.
+
+    // TODO: needs to be verified
+    // Settings::values.cpu_clock_rate.SetGlobal(false);
+    // Settings::values.cpu_clock_rate.SetValue(mhz);
 }
 
 } // namespace Service::APM

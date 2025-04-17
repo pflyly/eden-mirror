@@ -77,6 +77,8 @@ std::unique_ptr<TranslationMap> InitializeTranslations(QWidget* parent) {
            tr("This setting controls the accuracy of the emulated CPU.\nDon't change this unless "
               "you know what you are doing."));
     INSERT(Settings, cpu_backend, tr("Backend:"), QStringLiteral());
+    INSERT(Settings, cpu_clock_rate, tr("CPU Clock Rate (MHz):"), tr("Increasing CPU clock rate may "
+           "improve performance, but may also reduce stability."));
 
     // Cpu Debug
 

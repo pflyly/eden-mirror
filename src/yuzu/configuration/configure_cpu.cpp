@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <memory>
-#include <typeinfo>
 #include <vector>
 #include <QComboBox>
 #include "common/common_types.h"
@@ -39,10 +38,12 @@ ConfigureCpu::ConfigureCpu(const Core::System& system_,
 ConfigureCpu::~ConfigureCpu() = default;
 
 void ConfigureCpu::SetConfiguration() {}
+
 void ConfigureCpu::Setup(const ConfigurationShared::Builder& builder) {
     auto* accuracy_layout = ui->widget_accuracy->layout();
     auto* backend_layout = ui->widget_backend->layout();
     auto* unsafe_layout = ui->unsafe_widget->layout();
+    auto* clock_layout = ui->widget_clock->layout();
     std::map<u32, QWidget*> unsafe_hold{};
 
     std::vector<Settings::BasicSetting*> settings;
@@ -73,6 +74,8 @@ void ConfigureCpu::Setup(const ConfigurationShared::Builder& builder) {
         } else if (setting->Id() == Settings::values.cpu_backend.Id()) {
             backend_layout->addWidget(widget);
             backend_combobox = widget->combobox;
+        } else if (setting->Id() == Settings::values.cpu_clock_rate.Id()) {
+            clock_layout->addWidget(widget);
         } else {
             // Presently, all other settings here are unsafe checkboxes
             unsafe_hold.insert({setting->Id(), widget});

@@ -198,6 +198,7 @@ struct Values {
                                                              MemoryLayout::Memory_8Gb,
                                                              "memory_layout_mode",
                                                              Category::Core};
+
     SwitchableSetting<bool> use_speed_limit{
         linkage, true, "use_speed_limit", Category::Core, Specialization::Paired, false, true};
     SwitchableSetting<u16, true> speed_limit{linkage,
@@ -229,6 +230,12 @@ struct Values {
     SwitchableSetting<CpuAccuracy, true> cpu_accuracy{linkage,           CpuAccuracy::Auto,
                                                       CpuAccuracy::Auto, CpuAccuracy::Paranoid,
                                                       "cpu_accuracy",    Category::Cpu};
+
+    SwitchableSetting<u32, true> cpu_clock_rate{linkage, 1020,
+                                                500, 1785,
+                                                "cpu_clock_rate", Category::Cpu,
+                                                Specialization::Scalar};
+
     SwitchableSetting<bool> cpu_debug_mode{linkage, false, "cpu_debug_mode", Category::CpuDebug};
 
     Setting<bool> cpuopt_page_tables{linkage, true, "cpuopt_page_tables", Category::CpuDebug};
