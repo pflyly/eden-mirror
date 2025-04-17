@@ -11,9 +11,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - name: Fetch master branch
         run: git fetch origin master:master
+
       - name: Make script executable
         run: chmod +x ./.ci/license-header.rb
+
       - name: Check license headers
         run: ./.ci/license-header.rb
