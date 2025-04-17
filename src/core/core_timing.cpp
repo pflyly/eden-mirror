@@ -1,24 +1,27 @@
 // SPDX-FileCopyrightText: Copyright 2020 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include <algorithm>
 #include <mutex>
 #include <string>
 #include <tuple>
+
+#include <iostream>
+#include "common/settings.h"
 
 #ifdef _WIN32
 #include "common/windows/timer_resolution.h"
 #endif
 
 #ifdef ARCHITECTURE_x86_64
-#include "common/x64/cpu_wait.h"
 #endif
 
 #include "common/microprofile.h"
 #include "core/core_timing.h"
-#include "core/hardware_properties.h"
 
 namespace Core::Timing {
+
+int CoreTiming::rate_multiplier = 1;
+int CoreTiming::time_multiplier = 1;
 
 constexpr s64 MAX_SLICE_LENGTH = 10000;
 
@@ -185,14 +188,14 @@ void CoreTiming::ResetTicks() {
 
 u64 CoreTiming::GetClockTicks() const {
     if (is_multicore) [[likely]] {
-        return clock->GetCNTPCT();
+        return clock->GetCNTPCT() * rate_multiplier;
     }
     return Common::WallClock::CPUTickToCNTPCT(cpu_ticks);
 }
 
 u64 CoreTiming::GetGPUTicks() const {
     if (is_multicore) [[likely]] {
-        return clock->GetGPUTick();
+        return clock->GetGPUTick() * rate_multiplier;
     }
     return Common::WallClock::CPUTickToGPUTick(cpu_ticks);
 }
@@ -302,6 +305,7 @@ void CoreTiming::ThreadLoop() {
 }
 
 void CoreTiming::Reset() {
+    std::cout << "reset called" << std::endl;
     paused = true;
     shutting_down = true;
     pause_event.Set();
@@ -311,18 +315,27 @@ void CoreTiming::Reset() {
     }
     timer_thread.reset();
     has_started = false;
+
+    auto clock_strategy = Settings::values.cpu_clock_strategy.GetValue();
+    auto multiplier = Settings::values.cpu_clock_rate.GetValue();
+
+    time_multiplier = (clock_strategy == Settings::CpuClockStrategy::Timing || clock_strategy == Settings::CpuClockStrategy::Both) ? multiplier : 1;
+    rate_multiplier = (clock_strategy == Settings::CpuClockStrategy::Clock || clock_strategy == Settings::CpuClockStrategy::Both) ? multiplier : 1;
+
+    std::cout << "reset finished " << time_multiplier << " " << rate_multiplier << " " << (int) clock_strategy << " " << multiplier << " " << this << std::endl;
 }
 
 std::chrono::nanoseconds CoreTiming::GetGlobalTimeNs() const {
     if (is_multicore) [[likely]] {
-        return clock->GetTimeNS();
+        LOG_INFO(Core, "GLOBAL TIME MULTIPLIER {:X}", time_multiplier);
+        return clock->GetTimeNS() * CoreTiming::time_multiplier;
     }
     return std::chrono::nanoseconds{Common::WallClock::CPUTickToNS(cpu_ticks)};
 }
 
 std::chrono::microseconds CoreTiming::GetGlobalTimeUs() const {
     if (is_multicore) [[likely]] {
-        return clock->GetTimeUS();
+        return clock->GetTimeUS() * time_multiplier;
     }
     return std::chrono::microseconds{Common::WallClock::CPUTickToUS(cpu_ticks)};
 }

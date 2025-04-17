@@ -5,22 +5,15 @@
 #pragma once
 
 #include <array>
-#include <iostream>
 
 #include "common/bit_util.h"
 #include "common/common_types.h"
-#include "common/settings.h"
-#include "common/logging/log.h"
 
 namespace Core {
 
 namespace Hardware {
 
-inline u64 BASE_CLOCK_RATE() {
-    LOG_DEBUG(Core, "Settings reported clock rate={:08X}", Settings::values.cpu_clock_rate.GetValue());
-    // std::cout << Settings::values.cpu_clock_rate.GetValue() << std::endl;
-    return Settings::values.cpu_clock_rate.GetValue() * 1'000'000;
-}
+constexpr u64 BASE_CLOCK_RATE = 1'020'000;     // CPU Frequency = 1020.0 MHz
 constexpr u64 CNTFREQ = 19'200'000;            // CNTPCT_EL0 Frequency = 19.2 MHz
 constexpr u32 NUM_CPU_CORES = 4;               // Number of CPU Cores
 

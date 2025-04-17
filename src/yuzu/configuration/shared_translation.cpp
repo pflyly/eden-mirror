@@ -77,8 +77,14 @@ std::unique_ptr<TranslationMap> InitializeTranslations(QWidget* parent) {
            tr("This setting controls the accuracy of the emulated CPU.\nDon't change this unless "
               "you know what you are doing."));
     INSERT(Settings, cpu_backend, tr("Backend:"), QStringLiteral());
-    INSERT(Settings, cpu_clock_rate, tr("CPU Clock Rate (MHz):"), tr("Increasing CPU clock rate may "
+    INSERT(Settings, cpu_clock_rate, tr("CPU Clock Multiplier:"), tr("Increasing CPU clock speed may "
            "improve performance, but may also reduce stability."));
+    INSERT(Settings, cpu_clock_strategy, tr("Clock Strategy:"),
+           tr("Some games use clock rate for timings, others use clock timing, and some even use both.\n"
+              "Generally, this setting will increase a game's default FPS, but may cause unintended\n"
+              "speedups or gameplay issues; for this reason, dedicated mods that unlock VSync and\n"
+              "enable dynamic FPS are preferred over this setting.\nOnly change if you know what you're "
+              "doing."));
 
     // Cpu Debug
 
@@ -356,6 +362,16 @@ std::unique_ptr<ComboboxTranslationMap> ComboboxEnumeration(QWidget* parent) {
              PAIR(CpuAccuracy, Unsafe, tr("Unsafe")),
              PAIR(CpuAccuracy, Paranoid, tr("Paranoid (disables most optimizations)")),
          }});
+
+    translations->insert(
+        {Settings::EnumMetadata<Settings::CpuClockStrategy>::Index(),
+         {
+             PAIR(CpuClockStrategy, None, tr("None")),
+             PAIR(CpuClockStrategy, Clock, tr("Clock Rate")),
+             PAIR(CpuClockStrategy, Timing, tr("Clock Timing")),
+             PAIR(CpuClockStrategy, Both, tr("Both")),
+         }});
+
     translations->insert({Settings::EnumMetadata<Settings::CpuBackend>::Index(),
                           {
                               PAIR(CpuBackend, Dynarmic, tr("Dynarmic")),

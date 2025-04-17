@@ -9,7 +9,7 @@
 #include "core/hle/service/vi/display_list.h"
 #include "core/hle/service/vi/vsync_manager.h"
 
-constexpr auto FrameNs = std::chrono::nanoseconds{1000000000 / 60};
+constexpr auto FrameNs = std::chrono::nanoseconds{1'000'000'000 / 60};
 
 namespace Service::VI {
 

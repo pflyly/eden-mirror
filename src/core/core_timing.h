@@ -15,6 +15,7 @@
 #include <boost/heap/fibonacci_heap.hpp>
 
 #include "common/common_types.h"
+#include "common/settings_enums.h"
 #include "common/thread.h"
 #include "common/wall_clock.h"
 
@@ -178,6 +179,10 @@ private:
     /// Cycle timing
     u64 cpu_ticks{};
     s64 downcount{};
+
+    // Clock multipliers
+    static int rate_multiplier;
+    static int time_multiplier;
 };
 
 /// Creates a core timing event with the given name and callback.

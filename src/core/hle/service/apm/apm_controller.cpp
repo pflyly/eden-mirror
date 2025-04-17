@@ -80,10 +80,6 @@ PerformanceConfiguration Controller::GetCurrentPerformanceConfiguration(Performa
 
 void Controller::SetClockSpeed(u32 mhz) {
     LOG_DEBUG(Service_APM, "called, mhz={:08X}", mhz);
-
-    // TODO: needs to be verified
-    // Settings::values.cpu_clock_rate.SetGlobal(false);
-    // Settings::values.cpu_clock_rate.SetValue(mhz);
 }
 
 } // namespace Service::APM

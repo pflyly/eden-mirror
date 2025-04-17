@@ -8,7 +8,6 @@
 #include <ratio>
 
 #include "common/common_types.h"
-#include "core/hardware_properties.h"
 
 namespace Common {
 
@@ -16,9 +15,7 @@ class WallClock {
 public:
     static constexpr u64 CNTFRQ = 19'200'000;         // CNTPCT_EL0 Frequency = 19.2 MHz
     static constexpr u64 GPUTickFreq = 614'400'000;   // GM20B GPU Tick Frequency = 614.4 MHz
-    static inline u64 CPUTickFreq() {
-        return Core::Hardware::BASE_CLOCK_RATE();
-    }
+    static constexpr u64 CPUTickFreq = 1'020'000;    // CPU Frequency = 1020.0MHz
 
     virtual ~WallClock() = default;
 
@@ -54,19 +51,19 @@ public:
     // Cycle Timing
 
     static inline u64 CPUTickToNS(u64 cpu_tick) {
-        return cpu_tick * CPUTickToNsRatio::num / CPUTickToNsRatio::den();
+        return cpu_tick * CPUTickToNsRatio::num / CPUTickToNsRatio::den;
     }
 
     static inline u64 CPUTickToUS(u64 cpu_tick) {
-        return cpu_tick * CPUTickToUsRatio::num / CPUTickToUsRatio::den();
+        return cpu_tick * CPUTickToUsRatio::num / CPUTickToUsRatio::den;
     }
 
     static inline u64 CPUTickToCNTPCT(u64 cpu_tick) {
-        return cpu_tick * CPUTickToCNTPCTRatio::num / CPUTickToCNTPCTRatio::den();
+        return cpu_tick * CPUTickToCNTPCTRatio::num / CPUTickToCNTPCTRatio::den;
     }
 
     static inline u64 CPUTickToGPUTick(u64 cpu_tick) {
-        return cpu_tick * CPUTickToGPUTickRatio::num / CPUTickToGPUTickRatio::den();
+        return cpu_tick * CPUTickToGPUTickRatio::num / CPUTickToGPUTickRatio::den;
     }
 
 protected:
@@ -80,34 +77,10 @@ protected:
     using NsToGPUTickRatio = std::ratio<GPUTickFreq, std::nano::den>;
 
     // Cycle Timing
-
-    struct CPUTickToNsRatio {
-        static inline std::intmax_t num = std::nano::den;
-        static inline std::intmax_t den() {
-            return CPUTickFreq();
-        }
-    };
-
-    struct CPUTickToUsRatio {
-        static inline std::intmax_t num = std::micro::den;
-        static inline std::intmax_t den() {
-            return CPUTickFreq();
-        }
-    };
-
-    struct CPUTickToCNTPCTRatio {
-        static inline std::intmax_t num = CNTFRQ;
-        static inline std::intmax_t den() {
-            return CPUTickFreq();
-        }
-    };
-
-    struct CPUTickToGPUTickRatio {
-        static inline std::intmax_t num = GPUTickFreq;
-        static inline std::intmax_t den() {
-            return CPUTickFreq();
-        }
-    };
+    using CPUTickToNsRatio = std::ratio<std::nano::den, CPUTickFreq>;
+    using CPUTickToUsRatio = std::ratio<std::micro::den, CPUTickFreq>;
+    using CPUTickToCNTPCTRatio = std::ratio<CNTFRQ, CPUTickFreq>;
+    using CPUTickToGPUTickRatio = std::ratio<GPUTickFreq, CPUTickFreq>;
 };
 
 std::unique_ptr<WallClock> CreateOptimalClock();

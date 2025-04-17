@@ -231,10 +231,15 @@ struct Values {
                                                       CpuAccuracy::Auto, CpuAccuracy::Paranoid,
                                                       "cpu_accuracy",    Category::Cpu};
 
-    SwitchableSetting<u32, true> cpu_clock_rate{linkage, 1020,
-                                                500, 1785,
+    SwitchableSetting<u32, true> cpu_clock_rate{linkage, 1,
+                                                1, 6,
                                                 "cpu_clock_rate", Category::Cpu,
                                                 Specialization::Scalar};
+
+    SwitchableSetting<CpuClockStrategy, true> cpu_clock_strategy{linkage,      CpuClockStrategy::Clock,
+                                                      CpuClockStrategy::None,  CpuClockStrategy::Both,
+                                                      "cpu_clock_strategy",    Category::Cpu};
+
 
     SwitchableSetting<bool> cpu_debug_mode{linkage, false, "cpu_debug_mode", Category::CpuDebug};
 

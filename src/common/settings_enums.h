@@ -134,6 +134,8 @@ ENUM(CpuBackend, Dynarmic, Nce);
 
 ENUM(CpuAccuracy, Auto, Accurate, Unsafe, Paranoid);
 
+ENUM(CpuClockStrategy, None, Clock, Timing, Both)
+
 ENUM(MemoryLayout, Memory_4Gb, Memory_6Gb, Memory_8Gb);
 
 ENUM(ConfirmStop, Ask_Always, Ask_Based_On_Game, Ask_Never);

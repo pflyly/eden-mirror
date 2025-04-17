@@ -74,7 +74,8 @@ void ConfigureCpu::Setup(const ConfigurationShared::Builder& builder) {
         } else if (setting->Id() == Settings::values.cpu_backend.Id()) {
             backend_layout->addWidget(widget);
             backend_combobox = widget->combobox;
-        } else if (setting->Id() == Settings::values.cpu_clock_rate.Id()) {
+        } else if (setting->Id() == Settings::values.cpu_clock_rate.Id()
+                   || setting->Id() == Settings::values.cpu_clock_strategy.Id()) {
             clock_layout->addWidget(widget);
         } else {
             // Presently, all other settings here are unsafe checkboxes
