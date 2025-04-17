@@ -15,7 +15,7 @@ class WallClock {
 public:
     static constexpr u64 CNTFRQ = 19'200'000;         // CNTPCT_EL0 Frequency = 19.2 MHz
     static constexpr u64 GPUTickFreq = 614'400'000;   // GM20B GPU Tick Frequency = 614.4 MHz
-    static constexpr u64 CPUTickFreq = 1'020'000;    // CPU Frequency = 1020.0MHz
+    static constexpr u64 CPUTickFreq = 1'020'000'000;    // CPU Frequency = 1020.0MHz
 
     virtual ~WallClock() = default;
 
