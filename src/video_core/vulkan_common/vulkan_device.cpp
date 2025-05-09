@@ -1092,7 +1092,16 @@ bool Device::GetSuitability(bool requires_swapchain) {
 #undef EXT_FEATURE
 #undef FEATURE
 
-    // Perform the feature test.
+    if (extensions.descriptor_indexing) {
+        features.descriptor_indexing.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES_EXT;
+        features.descriptor_indexing.pNext = nullptr;
+        features.descriptor_indexing.descriptorBindingVariableDescriptorCount = VK_TRUE;
+        features.descriptor_indexing.runtimeDescriptorArray = VK_TRUE;
+        features.descriptor_indexing.descriptorBindingPartiallyBound = VK_TRUE;
+        SetNext(next, features.descriptor_indexing);
+    }
+
+           // Perform the feature test.
     physical.GetFeatures2(features2);
 
     // Base Vulkan 1.0 features are always valid regardless of instance version.
