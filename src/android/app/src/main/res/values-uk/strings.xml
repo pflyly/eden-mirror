@@ -88,6 +88,7 @@
     <string name="shader_backend">Вершинний шейдер</string>
     <string name="shader_backend_description">Спосіб компіляції шейдерів</string>
     <string name="shader_backend_glsl">GLSL</string>
+    <string name="shader_backend_glasm">GLASM</string>
     <string name="shader_backend_spirv">SPIR-V</string>
 
     <!-- NVDEC Emulation -->

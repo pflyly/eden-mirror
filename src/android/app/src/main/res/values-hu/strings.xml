@@ -88,6 +88,7 @@
     <string name="shader_backend">Shader backend</string>
     <string name="shader_backend_description">Shaderek fordításának módja</string>
     <string name="shader_backend_glsl">GLSL</string>
+    <string name="shader_backend_glasm">GLASM</string>
     <string name="shader_backend_spirv">SPIR-V</string>
 
     <!-- NVDEC Emuláció -->

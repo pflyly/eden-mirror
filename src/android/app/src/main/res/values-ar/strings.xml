@@ -87,6 +87,7 @@
     <string name="shader_backend">خلفية Shader</string>
     <string name="shader_backend_description">اختيار طريقة ترجمة Shaders</string>
     <string name="shader_backend_glsl">GLSL</string>
+    <string name="shader_backend_glasm">GLASM</string>
     <string name="shader_backend_spirv">SPIR-V</string>
 
     <!-- محاكاة NVDEC -->

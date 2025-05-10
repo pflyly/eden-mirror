@@ -88,6 +88,7 @@
     <string name="shader_backend">Backend de Shader</string>
     <string name="shader_backend_description">Método de compilação de shaders.</string>
     <string name="shader_backend_glsl">GLSL</string>
+    <string name="shader_backend_glasm">GLASM</string>
     <string name="shader_backend_spirv">SPIR-V</string>
 
     <!-- Emulação NVDEC -->

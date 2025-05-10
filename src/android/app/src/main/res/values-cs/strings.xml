@@ -87,6 +87,7 @@
     <string name="shader_backend">Backend shaderů</string>
     <string name="shader_backend_description">Způsob kompilace shaderů</string>
     <string name="shader_backend_glsl">GLSL</string>
+    <string name="shader_backend_glasm">GLASM</string>
     <string name="shader_backend_spirv">SPIR-V</string>
 
     <!-- Emulace NVDEC -->

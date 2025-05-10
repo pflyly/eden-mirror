@@ -88,6 +88,7 @@
     <string name="shader_backend">بک‌اند شیدر</string>
     <string name="shader_backend_description">انتخاب روش کامپایل و ترجمه شیدرها</string>
     <string name="shader_backend_glsl">GLSL</string>
+    <string name="shader_backend_glasm">GLASM</string>
     <string name="shader_backend_spirv">SPIR-V</string>
 
     <!-- شبیه‌سازی NVDEC -->

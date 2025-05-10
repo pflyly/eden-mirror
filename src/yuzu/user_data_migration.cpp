@@ -21,8 +21,7 @@
 
 namespace fs = std::filesystem;
 
-UserDataMigrator::UserDataMigrator(
-    QMainWindow *main_window)
+UserDataMigrator::UserDataMigrator(QMainWindow *main_window)
 {
     // NOTE: Logging is not initialized yet, do not produce logs here.
 
@@ -34,8 +33,7 @@ UserDataMigrator::UserDataMigrator(
     }
 }
 
-void UserDataMigrator::ShowMigrationPrompt(
-    QMainWindow *main_window)
+void UserDataMigrator::ShowMigrationPrompt(QMainWindow *main_window)
 {
     namespace fs = std::filesystem;
 
@@ -96,9 +94,9 @@ void UserDataMigrator::ShowMigrationPrompt(
 #define EMU_MAP(name) \
     const bool name##_found = fs::is_directory( \
         Common::FS::GetLegacyPath(Common::FS::LegacyPath::name##Dir)); \
-        legacyMap[main_window->tr(#name)] = LegacyEmu::name; \
-        found[main_window->tr(#name)] = name##_found; \
-        if (name##_found) \
+    legacyMap[main_window->tr(#name)] = LegacyEmu::name; \
+    found[main_window->tr(#name)] = name##_found; \
+    if (name##_found) \
         any_found = true;
 
     EMU_MAP(Citron)
@@ -159,8 +157,7 @@ void UserDataMigrator::ShowMigrationPrompt(
         return;
 }
 
-void UserDataMigrator::ShowMigrationCancelledMessage(
-    QMainWindow *main_window)
+void UserDataMigrator::ShowMigrationCancelledMessage(QMainWindow *main_window)
 {
     QMessageBox::information(main_window,
                              main_window->tr("Migration"),
@@ -173,11 +170,10 @@ void UserDataMigrator::ShowMigrationCancelledMessage(
                              QMessageBox::Ok);
 }
 
-void UserDataMigrator::MigrateUserData(
-    QMainWindow *main_window,
-    const LegacyEmu selected_legacy_emu,
-    const bool clear_shader_cache,
-    const MigrationStrategy strategy)
+void UserDataMigrator::MigrateUserData(QMainWindow *main_window,
+                                       const LegacyEmu selected_legacy_emu,
+                                       const bool clear_shader_cache,
+                                       const MigrationStrategy strategy)
 {
     namespace fs = std::filesystem;
     const auto copy_options = fs::copy_options::update_existing | fs::copy_options::recursive;
@@ -189,12 +185,12 @@ void UserDataMigrator::MigrateUserData(
     std::string legacy_cache_dir;
 
 #define LEGACY_EMU(emu) \
-case LegacyEmu::emu: \
+    case LegacyEmu::emu: \
         legacy_user_dir = Common::FS::GetLegacyPath(Common::FS::LegacyPath::emu##Dir).string(); \
         legacy_config_dir = Common::FS::GetLegacyPath(Common::FS::LegacyPath::emu##ConfigDir) \
-              .string(); \
+                                .string(); \
         legacy_cache_dir = Common::FS::GetLegacyPath(Common::FS::LegacyPath::emu##CacheDir) \
-              .string(); \
+                               .string(); \
         break;
 
     switch (selected_legacy_emu) {
@@ -216,7 +212,20 @@ case LegacyEmu::emu: \
     switch (strategy) {
     case MigrationStrategy::Link:
         // Create symlinks/directory junctions if requested
-        fs::create_directory_symlink(legacy_user_dir, eden_dir);
+
+        // Windows 11 has random permission nonsense to deal with.
+        try {
+            fs::create_directory_symlink(legacy_user_dir, eden_dir);
+        } catch (const fs::filesystem_error &e) {
+            QMessageBox::critical(
+                main_window,
+                main_window->tr("Link Failed"),
+                main_window
+                    ->tr("Linking the old directory failed. You may need to re-run with "
+                         "administrative privileges on Windows.\nOS gave error: %1")
+                    .arg(main_window->tr(e.what())));
+            std::exit(127);
+        }
 
 // Windows doesn't need any more links, because cache and config
 // are already children of the root directory
@@ -260,9 +269,11 @@ case LegacyEmu::emu: \
         }
 
         success_text.append(
-            main_window->tr("\n\nIf you wish to clean up the files which were left in the old "
-                            "data location, you can do so by deleting the following directory:\n"
-                            "%1").arg(QString::fromStdString(legacy_user_dir)));
+            main_window
+                ->tr("\n\nIf you wish to clean up the files which were left in the old "
+                     "data location, you can do so by deleting the following directory:\n"
+                     "%1")
+                .arg(QString::fromStdString(legacy_user_dir)));
         break;
     }
 

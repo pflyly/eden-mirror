@@ -88,6 +88,7 @@
     <string name="shader_backend">Backend Shader</string>
     <string name="shader_backend_description">Chọn cách biên dịch shader</string>
     <string name="shader_backend_glsl">GLSL</string>
+    <string name="shader_backend_glasm">GLASM</string>
     <string name="shader_backend_spirv">SPIR-V</string>
 
     <!-- Giả lập NVDEC -->

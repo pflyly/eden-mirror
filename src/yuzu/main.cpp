@@ -1806,11 +1806,11 @@ bool GMainWindow::LoadROM(const QString& filename, Service::AM::FrontendAppletPa
             msg->setWindowTitle(tr("Game Updates Warning"));
             msg->setIcon(QMessageBox::Warning);
             msg->setText(tr("The game you are trying to launch is known to have performance or booting "
-                            "issues when updates are applied. It's recommended to disable any updates "
-                            "to this game before attempting to launch, or switch to an earlier update. "
-                            "If you don't have any updates installed or enabled, you can safely ignore "
-                            "this message.<br><br>Press \"OK\" to continue launching, or \"Cancel\" to "
-                            "cancel the launch."));
+                            "issues when updates are applied. Please try increasing the memory layout to "
+                            "6GB or 8GB if any issues occur.<br><br>Press \"OK\" to continue launching, or "
+                            "\"Cancel\" to cancel the launch."));
+
+            // TODO: TMP: Recommends more memory for TotK.
 
             msg->setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
 

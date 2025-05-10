@@ -88,6 +88,7 @@
     <string name="shader_backend">شادەر باکند</string>
     <string name="shader_backend_description">هەڵبژاردنی ڕێگای پێکهێنانی شادەر</string>
     <string name="shader_backend_glsl">GLSL</string>
+    <string name="shader_backend_glasm">GLASM</string>
     <string name="shader_backend_spirv">SPIR-V</string>
 
     <!-- ئیمولەیشنی NVDEC -->

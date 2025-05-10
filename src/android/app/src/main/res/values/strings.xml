@@ -65,6 +65,7 @@
     <string name="shader_backend">Shader Backend</string>
     <string name="shader_backend_description">Choose how shaders are compiled and translated for your GPU.</string>
     <string name="shader_backend_glsl">GLSL</string>
+    <string name="shader_backend_glasm">GLASM</string>
     <string name="shader_backend_spirv">SPIR-V</string>
 
     <!-- NVDEC Emulation -->
