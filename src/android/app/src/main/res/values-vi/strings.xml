@@ -90,9 +90,9 @@
     <!-- Backend Shader -->
     <string name="shader_backend">Backend Shader</string>
     <string name="shader_backend_description">Chọn cách biên dịch shader</string>
-    <string name="shader_backend_glsl">GLSL</string>
-    <string name="shader_backend_glasm">GLASM</string>
-    <string name="shader_backend_spirv">SPIR-V</string>
+    <string name="shader_backend_glsl">GLSL (Đa năng)</string>
+    <string name="shader_backend_glasm">GLASM (ARM/Mali/Exynos)</string>
+    <string name="shader_backend_spirv">SPIR-V (Adreno)</string>
 
     <!-- Giả lập NVDEC -->
     <string name="nvdec_emulation">Giả lập NVDEC</string>

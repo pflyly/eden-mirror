@@ -90,9 +90,9 @@
     <!-- Backend de shaders -->
     <string name="shader_backend">Backend de shaders</string>
     <string name="shader_backend_description">Elegir cómo se compilan shaders</string>
-    <string name="shader_backend_glsl">GLSL</string>
-    <string name="shader_backend_glasm">GLASM</string>
-    <string name="shader_backend_spirv">SPIR-V</string>
+    <string name="shader_backend_glsl">GLSL (Universal)</string>
+    <string name="shader_backend_glasm">GLASM (ARM/Mali/Exynos)</string>
+    <string name="shader_backend_spirv">SPIR-V (Adreno)</string>
 
     <!-- Emulación NVDEC -->
     <string name="nvdec_emulation">Emulación NVDEC</string>

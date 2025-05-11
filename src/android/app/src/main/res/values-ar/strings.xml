@@ -89,9 +89,9 @@
     <!-- خلفية Shader -->
     <string name="shader_backend">خلفية Shader</string>
     <string name="shader_backend_description">اختيار طريقة ترجمة Shaders</string>
-    <string name="shader_backend_glsl">GLSL</string>
-    <string name="shader_backend_glasm">GLASM</string>
-    <string name="shader_backend_spirv">SPIR-V</string>
+    <string name="shader_backend_glsl">GLSL (عام)</string>
+    <string name="shader_backend_glasm">GLASM (ARM/مالي/إكسينوس)</string>
+    <string name="shader_backend_spirv">SPIR-V (أدرينو)</string>
 
     <!-- محاكاة NVDEC -->
     <string name="nvdec_emulation">محاكاة NVDEC</string>

@@ -90,9 +90,9 @@
     <!-- بک‌اند شیدر -->
     <string name="shader_backend">بک‌اند شیدر</string>
     <string name="shader_backend_description">انتخاب روش کامپایل و ترجمه شیدرها</string>
-    <string name="shader_backend_glsl">GLSL</string>
-    <string name="shader_backend_glasm">GLASM</string>
-    <string name="shader_backend_spirv">SPIR-V</string>
+    <string name="shader_backend_glsl">GLSL (همه‌کاره)</string>
+    <string name="shader_backend_glasm">GLASM (ARM/Mali/Exynos)</string>
+    <string name="shader_backend_spirv">SPIR-V (Adreno)</string>
 
     <!-- شبیه‌سازی NVDEC -->
     <string name="nvdec_emulation">شبیه‌سازی NVDEC</string>

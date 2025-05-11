@@ -90,9 +90,9 @@
     <!-- מנוע שיידרים -->
     <string name="shader_backend">מנוע שיידרים</string>
     <string name="shader_backend_description">בחר כיצד לקמפל שיידרים</string>
-    <string name="shader_backend_glsl">GLSL</string>
-    <string name="shader_backend_glasm">GLASM</string>
-    <string name="shader_backend_spirv">SPIR-V</string>
+    <string name="shader_backend_glsl">GLSL (אוניברסלי)</string>
+    <string name="shader_backend_glasm">GLASM (ARM/Mali/Exynos)</string>
+    <string name="shader_backend_spirv">SPIR-V (Adreno)</string>
 
     <!-- אמולציית NVDEC -->
     <string name="nvdec_emulation">אמולציית NVDEC</string>

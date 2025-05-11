@@ -90,9 +90,9 @@
     <!-- شادەر باکند -->
     <string name="shader_backend">شادەر باکند</string>
     <string name="shader_backend_description">هەڵبژاردنی ڕێگای پێکهێنانی شادەر</string>
-    <string name="shader_backend_glsl">GLSL</string>
-    <string name="shader_backend_glasm">GLASM</string>
-    <string name="shader_backend_spirv">SPIR-V</string>
+    <string name="shader_backend_glsl">GLSL (گشتی)</string>
+    <string name="shader_backend_glasm">GLASM (ARM/Mali/Exynos)</string>
+    <string name="shader_backend_spirv">SPIR-V (Adreno)</string>
 
     <!-- ئیمولەیشنی NVDEC -->
     <string name="nvdec_emulation">ئیمولەیشنی NVDEC</string>
