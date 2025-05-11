@@ -55,7 +55,8 @@ AVPixelFormat GetGpuFormat(AVCodecContext* codec_context, const AVPixelFormat* p
     return codec_context->pix_fmt;
 }
 
-std::string AVError(int errnum) {
+std::string AVError(int errnum)
+{
     char errbuf[AV_ERROR_MAX_STRING_SIZE] = {};
     av_make_error_string(errbuf, sizeof(errbuf) - 1, errnum);
     return errbuf;
@@ -395,8 +396,10 @@ bool DecoderContext::SendPacket(const Packet& packet) {
     if (!m_codec_context->hw_device_ctx && m_codec_context->codec_id == AV_CODEC_ID_H264) {
         m_decode_order = true;
         auto* codec{ffcodec(m_decoder.GetCodec())};
-        if (const int ret = codec->cb.decode(m_codec_context, m_temp_frame->GetFrame(),
-                                             &m_got_frame, packet.GetPacket());
+        if (const int ret = codec->cb.decode(m_codec_context,
+                                             m_temp_frame->GetFrame(),
+                                             &m_got_frame,
+                                             packet.GetPacket());
             ret < 0) {
             LOG_DEBUG(Service_NVDRV, "avcodec_send_packet error {}", AVError(ret));
             return false;
@@ -416,6 +419,7 @@ bool DecoderContext::SendPacket(const Packet& packet) {
 std::shared_ptr<Frame> DecoderContext::ReceiveFrame() {
     // Android can randomly crash when calling decode directly, so skip.
     // TODO update ffmpeg and hope that fixes it.
+// TODO: This is causing issues on linux, need to bisect
 #ifndef ANDROID
     if (!m_codec_context->hw_device_ctx && m_codec_context->codec_id == AV_CODEC_ID_H264) {
         m_decode_order = true;
