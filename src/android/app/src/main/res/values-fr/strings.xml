@@ -90,9 +90,9 @@
     <!-- Shader Backend -->
     <string name="shader_backend">Backend shader</string>
     <string name="shader_backend_description">Méthode de compilation</string>
-    <string name="shader_backend_glsl">GLSL (Universel)</string>
-    <string name="shader_backend_glasm">GLASM (ARM/Mali/Exynos)</string>
-    <string name="shader_backend_spirv">SPIR-V (Adreno)</string>
+    <string name="shader_backend_glsl">Universel</string>
+    <string name="shader_backend_glasm">Mali</string>
+    <string name="shader_backend_spirv">Adreno/Xclipse</string>
 
     <!-- NVDEC -->
     <string name="nvdec_emulation">Émulation NVDEC</string>

@@ -90,9 +90,9 @@
     <!-- Backend Shader -->
     <string name="shader_backend">Backend Shader</string>
     <string name="shader_backend_description">Pilih cara shader dikompilasi dan diterjemahkan untuk GPU Anda.</string>
-    <string name="shader_backend_glsl">GLSL (Universal)</string>
-    <string name="shader_backend_glasm">GLASM (ARM/Mali/Exynos)</string>
-    <string name="shader_backend_spirv">SPIR-V (Adreno)</string>
+    <string name="shader_backend_glsl">Universal</string>
+    <string name="shader_backend_glasm">Mali</string>
+    <string name="shader_backend_spirv">Adreno/Xclipse</string>
 
     <!-- Emulasi NVDEC -->
     <string name="nvdec_emulation">Emulasi NVDEC</string>

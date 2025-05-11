@@ -90,9 +90,9 @@
     <!-- 著色器後端 -->
     <string name="shader_backend">著色器後端</string>
     <string name="shader_backend_description">選擇著色器的編譯與轉譯方式</string>
-    <string name="shader_backend_glsl">GLSL (通用)</string>
-    <string name="shader_backend_glasm">GLASM (ARM/Mali/Exynos)</string>
-    <string name="shader_backend_spirv">SPIR-V (Adreno)</string>
+    <string name="shader_backend_glsl">通用</string>
+    <string name="shader_backend_glasm">Mali</string>
+    <string name="shader_backend_spirv">Adreno/Xclipse</string>
 
     <!-- NVDEC模擬 -->
     <string name="nvdec_emulation">NVDEC模擬</string>
