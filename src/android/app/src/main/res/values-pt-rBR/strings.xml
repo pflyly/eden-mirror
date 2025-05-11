@@ -20,9 +20,9 @@
     <string name="show_speed">Mostrar velocidade</string>
     <string name="show_speed_description">Exibir porcentagem de velocidade de emulação</string>
     <string name="show_app_ram_usage">Mostrar uso de RAM do app</string>
-    <string name="show_app_ram_usage_description">Exibir quantidade de RAM usada pelo emulador</string>
+    <string name="show_app_ram_usage_description">Mostrar a quantidade de RAM que o emulador está usando</string>
     <string name="show_system_ram_usage">Mostrar uso de RAM do sistema</string>
-    <string name="show_system_ram_usage_description">Exibir quantidade de RAM usada pelo sistema</string>
+    <string name="show_system_ram_usage_description">Mostrar a quantidade de RAM usada pelo sistema</string>
     <string name="show_bat_temperature">Mostrar temperatura da bateria</string>
     <string name="show_bat_temperature_description">Exibir temperatura da bateria em Celsius e Fahrenheit</string>
     <string name="overlay_position">Posição da sobreposição</string>
@@ -50,7 +50,7 @@
     <string name="dyna_state3">EDS3 + VertexInputDynamicState</string>
     <string name="dyna_state3_description">Melhora desempenho em dispositivos mais novos. Suportado apenas em GPUs Vulkan 1.3+.</string>
     <string name="use_sync_core">Sincronizar velocidade do núcleo</string>
-    <string name="use_sync_core_description">Sincroniza a velocidade do núcleo com a porcentagem máxima para melhorar desempenho sem alterar a velocidade real do jogo.</string>
+    <string name="use_sync_core_description">Sincroniza a velocidade do núcleo com a porcentagem máxima de velocidade para melhorar o desempenho sem alterar a velocidade real do jogo.</string>
     <string name="use_auto_stub">Usar Auto Stub</string>
     <string name="use_auto_stub_description">Preenche automaticamente serviços e funções ausentes. Pode melhorar compatibilidade mas causar crashes e problemas de estabilidade.</string>
     <string name="uninstall_firmware">Desinstalar firmware</string>
@@ -411,7 +411,7 @@
     <string name="renderer_force_max_clock">Forçar velocidade máxima (somente Adreno)</string>
     <string name="renderer_force_max_clock_description">Força a GPU a rodar na velocidade máxima (restrições térmicas serão aplicadas)</string>
     <string name="renderer_asynchronous_shaders">Usar shaders assíncronos </string>
-    <string name="renderer_asynchronous_shaders_description">Compila os shaders de forma assíncrona, reduzindo engasgos, mas pode apresentar problemas.</string>
+    <string name="renderer_asynchronous_shaders_description">Compila shaders de forma assíncrona. Isso pode reduzir engasgos, mas também pode introduzir falhas gráficas.</string>
     <string name="renderer_reactive_flushing">Usar flushing reativo</string>
     <string name="renderer_reactive_flushing_description">Melhora a precisão da renderização em alguns jogos ao custo de desempenho.</string>
     <string name="use_disk_shader_cache">Cache de shaders em disco</string>

@@ -335,8 +335,8 @@
     <string name="user_data_import_success">User data imported successfully</string>
     <string name="user_data_export_cancelled">Export cancelled</string>
     <string name="user_data_import_failed_description">Make sure the user data folders are at the root of the zip folder and contain a config file at config/config.ini and try again.</string>
-    <string name="support_link">https://discord.gg/Xa3ssgxrY7</string>
-    <string name="website_link">https://bixthefin.github.io//</string>
+    <string name="support_link">https://discord.gg/hab4Sh8qj6</string>
+    <string name="website_link">https://eden-emulator.github.io</string>
     <string name="github_link">https://git.eden-emu.dev/eden-emu</string>
 
     <!-- Early access upgrade strings -->
