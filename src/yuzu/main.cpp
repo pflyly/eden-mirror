@@ -439,7 +439,7 @@ GMainWindow::GMainWindow(bool has_broken_vulkan)
 
         QMessageBox::warning(this, tr("Broken Vulkan Installation Detected"),
                              tr("Vulkan initialization failed during boot.<br><br>Click <a "
-                                "href='https://yuzu-emu.org/wiki/faq/"
+                                "href='https://eden-emulator.github.io/wiki/faq/"
                                 "#yuzu-starts-with-the-error-broken-vulkan-installation-detected'>"
                                 "here for instructions to fix the issue</a>."));
 
@@ -1859,7 +1859,7 @@ bool GMainWindow::LoadROM(const QString& filename, Service::AM::FrontendAppletPa
                        "outdated format that has been superseded by others such as NCA, NAX, XCI, or "
                        "NSP. Deconstructed ROM directories lack icons, metadata, and update "
                        "support.<br><br>For an explanation of the various Switch formats eden supports, <a "
-                       "href='https://yuzu-emu.org/wiki/overview-of-switch-game-formats'>check out our "
+                       "href='https://eden-emulator.github.io/wiki/overview-of-switch-game-formats'>check out our "
                        "wiki</a>. This message will not be shown again."));
     }
 
@@ -1877,7 +1877,7 @@ bool GMainWindow::LoadROM(const QString& filename, Service::AM::FrontendAppletPa
                            "This is usually caused by outdated GPU drivers, including integrated ones. "
                            "Please see the log for more details. "
                            "For more information on accessing the log, please see the following page: "
-                           "<a href='https://yuzu-emu.org/help/reference/log-files/'>"
+                           "<a href='https://eden-emulator.github.io/help/reference/log-files/'>"
                            "How to Upload the Log File</a>. "));
             break;
         default:
@@ -2882,7 +2882,7 @@ void GMainWindow::OnGameListNavigateToGamedbEntry(u64 program_id,
         directory = it->second.second;
     }
 
-    QDesktopServices::openUrl(QUrl(QStringLiteral("https://yuzu-emu.org/game/") + directory));
+    QDesktopServices::openUrl(QUrl(QStringLiteral("https://eden-emulator.github.io/game/") + directory));
 }
 
 bool GMainWindow::CreateShortcutLink(const std::filesystem::path& shortcut_path,
@@ -3596,8 +3596,8 @@ void GMainWindow::OnMenuReportCompatibility() {
     } else {
         QMessageBox::critical(
                     this, tr("Missing yuzu Account"),
-                    tr("In order to submit a game compatibility test case, you must link your yuzu "
-                       "account.<br><br/>To link your yuzu account, go to Emulation &gt; Configuration "
+                    tr("In order to submit a game compatibility test case, you must link your eden "
+                       "account.<br><br/>To link your eden account, go to Emulation &gt; Configuration "
                        "&gt; "
                        "Web."));
     }
@@ -3621,11 +3621,11 @@ void GMainWindow::OnOpenModsPage() {
 }
 
 void GMainWindow::OnOpenQuickstartGuide() {
-    OpenURL(QUrl(QStringLiteral("https://yuzu-emu.org/help/quickstart/")));
+    OpenURL(QUrl(QStringLiteral("https://eden-emulator.github.io/help/quickstart/")));
 }
 
 void GMainWindow::OnOpenFAQ() {
-    OpenURL(QUrl(QStringLiteral("https://yuzu-emu.org/wiki/faq/")));
+    OpenURL(QUrl(QStringLiteral("https://eden-emulator.github.io/wiki/faq/")));
 }
 
 void GMainWindow::ToggleFullscreen() {
@@ -4199,7 +4199,7 @@ void GMainWindow::OnInstallFirmware() {
     if (!ContentManager::AreKeysPresent()) {
         QMessageBox::information(
                     this, tr("Keys not installed"),
-                    tr("Install decryption keys and restart yuzu before attempting to install firmware."));
+                    tr("Install decryption keys and restart eden before attempting to install firmware."));
         return;
     }
 
