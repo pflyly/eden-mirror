@@ -6,6 +6,9 @@
     <string name="notification_permission_not_granted">لم يتم منح إذن الإشعار</string>
 
     <!-- Stats Overlay settings -->
+    <string name="enhanced_fps_suffix">(مُحسَّن)</string>
+    <string name="skipping_fps_suffix">(تخطي)</string>
+    <string name="system_info_label">النظام:</string>
     <string name="show_stats_overlay">عرض إحصائيات الأداء</string>
     <string name="stats_overlay_customization">تخصيص</string>
     <string name="stats_overlay_items">الرؤية</string>

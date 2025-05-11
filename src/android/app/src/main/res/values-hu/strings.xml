@@ -7,6 +7,9 @@
     <string name="notification_permission_not_granted">Nincs engedély az értesítés megjelenítéséhez!</string>
 
     <!-- Stats Overlay settings -->
+    <string name="enhanced_fps_suffix">(Továbbfejlesztett)</string>
+    <string name="skipping_fps_suffix">(Kihagyás)</string>
+    <string name="system_info_label">Rendszer:</string>
     <string name="show_stats_overlay">Teljesítmény statisztikák megjelenítése</string>
     <string name="stats_overlay_customization">Testreszabás</string>
     <string name="stats_overlay_items">Láthatóság</string>

@@ -7,6 +7,9 @@
     <string name="notification_permission_not_granted">通知が許可されていません!</string>
 
     <!-- Stats Overlay settings -->
+    <string name="enhanced_fps_suffix">(強化)</string>
+    <string name="skipping_fps_suffix">(スキップ)</string>
+    <string name="system_info_label">システム:</string>
     <string name="show_stats_overlay">パフォーマンス統計オーバーレイを表示</string>
     <string name="stats_overlay_customization">カスタマイズ</string>
     <string name="stats_overlay_items">表示項目</string>

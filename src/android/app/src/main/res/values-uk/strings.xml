@@ -7,6 +7,9 @@
     <string name="notification_permission_not_granted">Ви не надали дозвіл сповіщень!</string>
 
     <!-- Stats Overlay settings -->
+    <string name="enhanced_fps_suffix">(Покращений)</string>
+    <string name="skipping_fps_suffix">(Пропуск)</string>
+    <string name="system_info_label">Система:</string>
     <string name="show_stats_overlay">Показати накладання статистики</string>
     <string name="stats_overlay_customization">Налаштування</string>
     <string name="stats_overlay_items">Видимість</string>

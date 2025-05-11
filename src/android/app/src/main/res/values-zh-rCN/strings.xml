@@ -7,6 +7,9 @@
     <string name="notification_permission_not_granted">未授予通知权限！</string>
 
     <!-- Stats Overlay settings -->
+    <string name="enhanced_fps_suffix">(增强)</string>
+    <string name="skipping_fps_suffix">(跳过)</string>
+    <string name="system_info_label">系统:</string>
     <string name="show_stats_overlay">显示性能统计悬浮窗</string>
     <string name="stats_overlay_customization">自定义</string>
     <string name="stats_overlay_items">显示项</string>

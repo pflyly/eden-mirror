@@ -7,6 +7,9 @@
     <string name="notification_permission_not_granted">مجوز اعلان داده نشده!</string>
 
     <!-- Stats Overlay settings -->
+    <string name="enhanced_fps_suffix">(بهبودیافته)</string>
+    <string name="skipping_fps_suffix">(رد کردن)</string>
+    <string name="system_info_label">سیستم:</string>
     <string name="show_stats_overlay">نمایش آمار عملکرد</string>
     <string name="stats_overlay_customization">سفارشی‌سازی</string>
     <string name="stats_overlay_items">نمایش</string>

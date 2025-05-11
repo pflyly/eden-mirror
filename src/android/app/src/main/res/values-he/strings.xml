@@ -7,6 +7,9 @@
     <string name="notification_permission_not_granted">הרשאות התראות לא ניתנה!</string>
 
     <!-- Stats Overlay settings -->
+    <string name="enhanced_fps_suffix">(משופר)</string>
+    <string name="skipping_fps_suffix">(דילוג)</string>
+    <string name="system_info_label">מערכת:</string>
     <string name="show_stats_overlay">הצג סטטיסטיקות ביצועים</string>
     <string name="stats_overlay_customization">התאמה אישית</string>
     <string name="stats_overlay_items">נראות</string>

@@ -7,6 +7,9 @@
     <string name="notification_permission_not_granted">Acesso às notificações não concedido!</string>
 
     <!-- Stats Overlay settings -->
+    <string name="enhanced_fps_suffix">(Aprimorado)</string>
+    <string name="skipping_fps_suffix">(Pular)</string>
+    <string name="system_info_label">Sistema:</string>
     <string name="show_stats_overlay">Mostrar sobreposição de estatísticas de desempenho</string>
     <string name="stats_overlay_customization">Personalização</string>
     <string name="stats_overlay_items">Visibilidade</string>

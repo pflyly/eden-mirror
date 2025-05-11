@@ -7,6 +7,9 @@
     <string name="notification_permission_not_granted">Ứng dụng không được cấp quyền thông báo!</string>
 
     <!-- Stats Overlay settings -->
+    <string name="enhanced_fps_suffix">(Nâng cao)</string>
+    <string name="skipping_fps_suffix">(Bỏ qua)</string>
+    <string name="system_info_label">Hệ thống:</string>
     <string name="show_stats_overlay">Hiển thị thống kê hiệu suất</string>
     <string name="stats_overlay_customization">Tùy chỉnh</string>
     <string name="stats_overlay_items">Hiển thị</string>
