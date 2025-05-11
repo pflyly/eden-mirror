@@ -1592,6 +1592,7 @@ void GMainWindow::ConnectMenuEvents() {
 
     // Help
     connect_menu(ui->action_Open_yuzu_Folder, &GMainWindow::OnOpenYuzuFolder);
+    connect_menu(ui->action_Discord, &GMainWindow::OnOpenDiscord);
     connect_menu(ui->action_Verify_installed_contents, &GMainWindow::OnVerifyInstalledContents);
     connect_menu(ui->action_Install_Firmware, &GMainWindow::OnInstallFirmware);
     connect_menu(ui->action_Install_Keys, &GMainWindow::OnInstallDecryptionKeys);
@@ -3621,11 +3622,16 @@ void GMainWindow::OnOpenModsPage() {
 }
 
 void GMainWindow::OnOpenQuickstartGuide() {
-    OpenURL(QUrl(QStringLiteral("https://eden-emulator.github.io/help/quickstart/")));
+    OpenURL(QUrl(QStringLiteral("https://yuzu-mirror.github.io/help/quickstart/")));
 }
 
 void GMainWindow::OnOpenFAQ() {
-    OpenURL(QUrl(QStringLiteral("https://eden-emulator.github.io/wiki/faq/")));
+    OpenURL(QUrl(QStringLiteral("https://eden-emulator.github.io/")));
+}
+
+void GMainWindow::OnOpenDiscord()
+{
+    OpenURL(QUrl(QStringLiteral("https://discord.gg/edenemu")));
 }
 
 void GMainWindow::ToggleFullscreen() {
