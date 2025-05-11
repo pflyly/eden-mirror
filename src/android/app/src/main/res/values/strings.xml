@@ -23,9 +23,9 @@
     <string name="show_speed">Show Speed</string>
     <string name="show_speed_description">Display current emulation speed percentage</string>
     <string name="show_app_ram_usage">Show App Memory Usage</string>
-    <string name="show_app_ram_usage_description">Display the amount of RAM getting used by the emulator</string>
+    <string name="show_app_ram_usage_description">Display the amount of RAM the emulator is using</string>
     <string name="show_system_ram_usage">Show System Memory Usage</string>
-    <string name="show_system_ram_usage_description">Display the amount of RAM getting used by the system</string>
+    <string name="show_system_ram_usage_description">Display the amount of RAM used by the system</string>
     <string name="show_bat_temperature">Show Battery Temperature</string>
     <string name="show_bat_temperature_description">Display current Battery temperature in Celsius and Fahrenheit</string>
     <string name="overlay_position">Overlay Position</string>
@@ -49,7 +49,7 @@
     <string name="dyna_state3">EDS3 + VertexInputDynamicState</string>
     <string name="dyna_state3_description">Improves performance on newer devices. Only supported on Vulkan 1.3+ GPUs.</string>
     <string name="use_sync_core">Synchronize Core Speed</string>
-    <string name="use_sync_core_description">Synchronize the core tick speed to the maximum speed percentage to improve performance without altering the games actual speed.</string>
+    <string name="use_sync_core_description">Synchronize the core tick speed to the maximum speed percentage to improve performance without altering the game\'s actual speed.</string>
     <string name="use_auto_stub">Use Auto Stub</string>
     <string name="use_auto_stub_description">Automatically stub missing services and functions. This may improve compatibility but can cause crashes and stability issues.</string>
     <string name="uninstall_firmware">Uninstall firmware</string>
@@ -389,7 +389,7 @@
     <string name="renderer_optimize_spirv_output">Optimize SPIRV output</string>
     <string name="renderer_optimize_spirv_output_description">Optimizes compiled shader to improve GPU efficiency.</string>
     <string name="renderer_asynchronous_shaders">Use asynchronous shaders</string>
-    <string name="renderer_asynchronous_shaders_description">Compiles shaders asynchronously, reducing stutter but may introduce glitches.</string>
+    <string name="renderer_asynchronous_shaders_description">Compiles shaders asynchronously. This may reduce stutters but may also introduce glitches.</string>
     <string name="use_fast_gpu_time">Use Fast GPU Time</string>
     <string name="use_fast_gpu_time_description">Forces most games to run at their highest native resolution. This option is hacky and may cause issues.</string>
     <string name="renderer_reactive_flushing">Use reactive flushing</string>

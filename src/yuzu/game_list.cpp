@@ -374,7 +374,7 @@ GameList::GameList(FileSys::VirtualFilesystem vfs_, FileSys::ManualContentProvid
     warning_layout = new QHBoxLayout;
     pre_alpha_warning = new QLabel;
     pre_alpha_warning->setText(
-        tr("IMPORTANT: Eden is PRE-ALPHA SOFTWARE."
+        tr("IMPORTANT: Eden is PRE-ALPHA SOFTWARE. "
            "Bugs and unfinished features are expected to be present at this stage."));
     pre_alpha_warning->setWordWrap(true);
     pre_alpha_warning->setOpenExternalLinks(true);
