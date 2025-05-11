@@ -377,10 +377,11 @@ typedef struct FFCodec {
     const uint32_t* codec_tags;
 } FFCodec;
 
+#ifndef ANDROID
 static av_always_inline const FFCodec* ffcodec(const AVCodec* codec) {
     return (const FFCodec*)codec;
 }
-
+#endif
 } // namespace
 
 
