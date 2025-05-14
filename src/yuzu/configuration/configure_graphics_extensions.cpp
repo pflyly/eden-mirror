@@ -35,9 +35,6 @@ void ConfigureGraphicsExtensions::Setup(const ConfigurationShared::Builder& buil
     auto& layout = *ui->populate_target->layout();
     std::map<u32, QWidget*> hold{}; // A map will sort the data for us
 
-    QSlider *dyna_state = nullptr;
-    QCheckBox *vertex_input = nullptr;
-
     for (auto setting :
          Settings::values.linkage.by_category[Settings::Category::RendererExtensions]) {
         ConfigurationShared::Widget* widget = builder.BuildWidget(setting, apply_funcs);
@@ -55,29 +52,14 @@ void ConfigureGraphicsExtensions::Setup(const ConfigurationShared::Builder& buil
         if (setting->Id() == Settings::values.dyna_state.Id()) {
             widget->slider->setTickInterval(1);
             widget->slider->setTickPosition(QSlider::TicksAbove);
-            dyna_state = widget->slider;
         } else if (setting->Id() == Settings::values.vertex_input.Id()) {
-            vertex_input = widget->checkbox;
-            int dynamic_state = Settings::values.dyna_state.GetValue();
-
-            // TODO(alekpop): I believe this is not required, it is a solo extension.
-            vertex_input->setEnabled(dynamic_state == 3);
-            if (dynamic_state < 3) {
-                vertex_input->setChecked(false);
-            }
+            // widget->checkbox->setDisabled(true);
         }
     }
 
     for (const auto& [id, widget] : hold) {
         layout.addWidget(widget);
     }
-
-    connect(dyna_state, &QSlider::sliderMoved, this, [vertex_input](int value) {
-        vertex_input->setEnabled(value == 3);
-        if (value < 3) {
-            vertex_input->setChecked(false);
-        }
-    });
 }
 
 void ConfigureGraphicsExtensions::ApplyConfiguration() {

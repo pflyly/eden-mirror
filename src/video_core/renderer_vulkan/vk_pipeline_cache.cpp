@@ -128,7 +128,8 @@ Shader::AttributeType CastAttributeType(const FixedPipelineState::VertexAttribut
     return Shader::AttributeType::Float;
 }
 
-Shader::AttributeType AttributeType(const FixedPipelineState& state, size_t index) {
+Shader::AttributeType AttributeType(const FixedPipelineState& state, size_t index)
+{
     switch (state.DynamicAttributeType(index)) {
     case 0:
         return Shader::AttributeType::Disabled;
@@ -179,7 +180,8 @@ Shader::RuntimeInfo MakeRuntimeInfo(std::span<const Shader::IR::Program> program
                 info.generic_input_types[index] = AttributeType(key.state, index);
             }
         } else {
-            std::ranges::transform(key.state.attributes, info.generic_input_types.begin(),
+            std::ranges::transform(key.state.attributes,
+                                   info.generic_input_types.begin(),
                                    &CastAttributeType);
         }
         break;
@@ -403,8 +405,8 @@ PipelineCache::PipelineCache(Tegra::MaxwellDeviceMemoryManager& device_memory_,
     }
 
     const u8 dynamic_state = Settings::values.dyna_state.GetValue();
-    // TODO(alekpop): this is a solo extension, pipeline needs to be fixed to represent this, I will keep it as it is for now.
-    const bool vertex_input = dynamic_state == 3 && Settings::values.vertex_input.GetValue();
+
+    const bool vertex_input = Settings::values.vertex_input.GetValue();
 
     LOG_INFO(Render_Vulkan, "DynamicState value is set to {}", (u32) dynamic_state);
 
@@ -419,8 +421,7 @@ PipelineCache::PipelineCache(Tegra::MaxwellDeviceMemoryManager& device_memory_,
                                               && dynamic_state > 2,
         .has_extended_dynamic_state_3_enables = device.IsExtExtendedDynamicState3EnablesSupported()
                                                 && dynamic_state > 2,
-        .has_dynamic_vertex_input = device.IsExtVertexInputDynamicStateSupported()
-                                    && dynamic_state > 2 && vertex_input,
+        .has_dynamic_vertex_input = device.IsExtVertexInputDynamicStateSupported() && vertex_input,
     };
 
     LOG_INFO(Render_Vulkan, "DynamicState1: {}", dynamic_features.has_extended_dynamic_state);
