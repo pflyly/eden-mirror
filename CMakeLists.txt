@@ -61,7 +61,9 @@ option(YUZU_USE_PRECOMPILED_HEADERS "Use precompiled headers" ON)
 
 option(YUZU_DOWNLOAD_ANDROID_VVL "Download validation layer binary for android" ON)
 
-CMAKE_DEPENDENT_OPTION(YUZU_ROOM "Compile LDN room server" ON "NOT ANDROID" OFF)
+CMAKE_DEPENDENT_OPTION(YUZU_ROOM "Enable dedicated room functionality" ON "NOT ANDROID" OFF)
+
+CMAKE_DEPENDENT_OPTION(YUZU_ROOM_STANDALONE "Enable standalone room executable" ON "YUZU_ROOM" OFF)
 
 CMAKE_DEPENDENT_OPTION(YUZU_CMD "Compile the eden-cli executable" ON "NOT ANDROID" OFF)
 
@@ -287,6 +289,10 @@ if (ARCHITECTURE_arm64 AND (ANDROID OR ${CMAKE_SYSTEM_NAME} STREQUAL "Linux"))
     add_definitions(-DHAS_NCE=1)
 endif()
 
+if (YUZU_ROOM)
+    add_definitions(-DYUZU_ROOM)
+endif()
+
 # Configure C++ standard
 # ===========================
 
@@ -397,7 +403,6 @@ if (ENABLE_SDL2)
 endif()
 
 add_subdirectory(externals)
-
 
 if (ENABLE_QT)
     if (NOT USE_SYSTEM_QT)
