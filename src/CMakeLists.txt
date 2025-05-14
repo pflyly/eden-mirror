@@ -201,7 +201,7 @@ if (YUZU_TESTS)
     add_subdirectory(tests)
 endif()
 
-if (ENABLE_SDL2)
+if (ENABLE_SDL2 AND YUZU_CMD)
     add_subdirectory(yuzu_cmd)
     set_target_properties(yuzu-cmd PROPERTIES OUTPUT_NAME "eden-cli")
 endif()
