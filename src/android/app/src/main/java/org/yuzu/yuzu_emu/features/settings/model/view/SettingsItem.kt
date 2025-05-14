@@ -136,14 +136,14 @@ abstract class SettingsItem(
                     titleId = R.string.dyna_state,
                     descriptionId = R.string.dyna_state_description,
                     min = 0,
-                    max = 2,
+                    max = 3,
                 )
             )
             put(
                 SwitchSetting(
-                    BooleanSetting.RENDERER_DYNA_STATE3,
-                    titleId = R.string.dyna_state3,
-                    descriptionId = R.string.dyna_state3_description
+                    BooleanSetting.RENDERER_VERTEX_INPUT,
+                    titleId = R.string.vertex_input,
+                    descriptionId = R.string.vertex_input_description
                 )
             )
             put(
@@ -191,6 +191,13 @@ abstract class SettingsItem(
                     BooleanSetting.PICTURE_IN_PICTURE,
                     titleId = R.string.picture_in_picture,
                     descriptionId = R.string.picture_in_picture_description
+                )
+            )
+            put(
+                SwitchSetting(
+                    BooleanSetting.DEBUG_FLUSH_BY_LINE,
+                    titleId = R.string.flush_by_line,
+                    descriptionId = R.string.flush_by_line_description
                 )
             )
 

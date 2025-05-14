@@ -403,17 +403,24 @@ PipelineCache::PipelineCache(Tegra::MaxwellDeviceMemoryManager& device_memory_,
     }
 
     const u8 dynamic_state = Settings::values.dyna_state.GetValue();
-    const bool dynamic_state3 = dynamic_state == 2 && Settings::values.dyna_state3.GetValue();
+    // TODO(alekpop): this is a solo extension, pipeline needs to be fixed to represent this, I will keep it as it is for now.
+    const bool vertex_input = dynamic_state == 3 && Settings::values.vertex_input.GetValue();
 
     LOG_INFO(Render_Vulkan, "DynamicState value is set to {}", (u32) dynamic_state);
-    LOG_INFO(Render_Vulkan, "DynamicState3 value is set to {}", dynamic_state3);
+
     dynamic_features = DynamicFeatures{
-        .has_extended_dynamic_state =           device.IsExtExtendedDynamicStateSupported() && dynamic_state > 0,
-        .has_extended_dynamic_state_2 =         device.IsExtExtendedDynamicState2Supported() && dynamic_state > 1,
-        .has_extended_dynamic_state_2_extra =   device.IsExtExtendedDynamicState2ExtrasSupported() && dynamic_state > 1,
-        .has_extended_dynamic_state_3_blend =   device.IsExtExtendedDynamicState3BlendingSupported() && dynamic_state3,
-        .has_extended_dynamic_state_3_enables = device.IsExtExtendedDynamicState3EnablesSupported() && dynamic_state3,
-        .has_dynamic_vertex_input = device.IsExtVertexInputDynamicStateSupported(),// && dynamic_state3,
+        .has_extended_dynamic_state = device.IsExtExtendedDynamicStateSupported()
+                                      && dynamic_state > 0,
+        .has_extended_dynamic_state_2 = device.IsExtExtendedDynamicState2Supported()
+                                        && dynamic_state > 1,
+        .has_extended_dynamic_state_2_extra = device.IsExtExtendedDynamicState2ExtrasSupported()
+                                              && dynamic_state > 1,
+        .has_extended_dynamic_state_3_blend = device.IsExtExtendedDynamicState3BlendingSupported()
+                                              && dynamic_state > 2,
+        .has_extended_dynamic_state_3_enables = device.IsExtExtendedDynamicState3EnablesSupported()
+                                                && dynamic_state > 2,
+        .has_dynamic_vertex_input = device.IsExtVertexInputDynamicStateSupported()
+                                    && dynamic_state > 2 && vertex_input,
     };
 
     LOG_INFO(Render_Vulkan, "DynamicState1: {}", dynamic_features.has_extended_dynamic_state);

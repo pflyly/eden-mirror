@@ -459,6 +459,7 @@ Device::Device(VkInstance instance_, vk::PhysicalDevice physical_, VkSurfaceKHR 
         first_next = &diagnostics_nv;
     }
 
+    // TODO(alekpop): impl is incomplete, needs the settings to be assigned.
     VkPhysicalDeviceDescriptorIndexingFeaturesEXT descriptor_indexing{
         .sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES_EXT,
         .pNext = use_diagnostics_nv ? static_cast<void*>(&diagnostics_nv) : static_cast<void*>(&features2),
@@ -490,6 +491,8 @@ Device::Device(VkInstance instance_, vk::PhysicalDevice physical_, VkSurfaceKHR 
 
     CollectPhysicalMemoryInfo();
     CollectToolingInfo();
+
+    // TODO(alekpop): many things here are still applying and need to be changed to match the real behaviors.
 
     if (is_qualcomm || is_turnip) {
         LOG_WARNING(Render_Vulkan,
@@ -543,6 +546,7 @@ Device::Device(VkInstance instance_, vk::PhysicalDevice physical_, VkSurfaceKHR 
             cant_blit_msaa = true;
         }
     }
+
     if (extensions.extended_dynamic_state && is_radv) {
         // Mask driver version variant
         const u32 version = (properties.properties.driverVersion << 3) >> 3;
@@ -595,9 +599,9 @@ Device::Device(VkInstance instance_, vk::PhysicalDevice physical_, VkSurfaceKHR 
         // AMD and Samsung drivers have broken extendedDynamicState3ColorBlendEquation
         LOG_WARNING(Render_Vulkan,
                     "AMD and Samsung drivers have broken extendedDynamicState3ColorBlendEquation");
-        features.extended_dynamic_state3.extendedDynamicState3ColorBlendEnable = true;
-        features.extended_dynamic_state3.extendedDynamicState3ColorBlendEquation = true;
-        dynamic_state3_blending = true;
+        // features.extended_dynamic_state3.extendedDynamicState3ColorBlendEnable = true;
+        // features.extended_dynamic_state3.extendedDynamicState3ColorBlendEquation = true;
+        // dynamic_state3_blending = true;
     }
     if (extensions.vertex_input_dynamic_state && is_radv) {
         // TODO(ameerj): Blacklist only offending driver versions
@@ -1235,11 +1239,18 @@ void Device::RemoveUnsuitableExtensions() {
                                        VK_EXT_EXTENDED_DYNAMIC_STATE_3_EXTENSION_NAME);
 
     // VK_EXT_provoking_vertex
-    extensions.provoking_vertex =
-        features.provoking_vertex.provokingVertexLast &&
-        features.provoking_vertex.transformFeedbackPreservesProvokingVertex;
-    // RemoveExtensionFeatureIfUnsuitable(extensions.provoking_vertex, features.provoking_vertex,
-    //                                    VK_EXT_PROVOKING_VERTEX_EXTENSION_NAME);
+    if (Settings::values.provoking_vertex.GetValue()) {
+        extensions.provoking_vertex = features.provoking_vertex.provokingVertexLast
+                                      && features.provoking_vertex
+                                             .transformFeedbackPreservesProvokingVertex;
+        RemoveExtensionFeatureIfUnsuitable(extensions.provoking_vertex,
+                                           features.provoking_vertex,
+                                           VK_EXT_PROVOKING_VERTEX_EXTENSION_NAME);
+    } else {
+        RemoveExtensionFeature(extensions.provoking_vertex,
+                               features.provoking_vertex,
+                               VK_EXT_PROVOKING_VERTEX_EXTENSION_NAME);
+    }
 
     // VK_KHR_shader_atomic_int64
     extensions.shader_atomic_int64 = features.shader_atomic_int64.shaderBufferInt64Atomics &&
@@ -1275,11 +1286,17 @@ void Device::RemoveUnsuitableExtensions() {
                                        VK_EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME);
 
     // VK_EXT_vertex_input_dynamic_state
-    extensions.vertex_input_dynamic_state =
-        features.vertex_input_dynamic_state.vertexInputDynamicState;
-    //RemoveExtensionFeatureIfUnsuitable(extensions.vertex_input_dynamic_state,
-    //features.vertex_input_dynamic_state,
-    //VK_EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME);
+    if (Settings::values.vertex_input.GetValue()) {
+        extensions.vertex_input_dynamic_state = features.vertex_input_dynamic_state
+                                                    .vertexInputDynamicState;
+        RemoveExtensionFeatureIfUnsuitable(extensions.vertex_input_dynamic_state,
+                                           features.vertex_input_dynamic_state,
+                                           VK_EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME);
+    } else {
+        RemoveExtensionFeature(extensions.vertex_input_dynamic_state,
+                               features.vertex_input_dynamic_state,
+                               VK_EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME);
+    }
 
     // VK_KHR_pipeline_executable_properties
     if (Settings::values.renderer_shader_feedback.GetValue()) {

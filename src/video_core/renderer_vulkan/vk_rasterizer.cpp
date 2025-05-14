@@ -1103,8 +1103,11 @@ void RasterizerVulkan::UpdateDepthBias(Tegra::Engines::Maxwell3D::Regs& regs) {
                         regs.zeta.format == Tegra::DepthFormat::X8Z24_UNORM ||
                         regs.zeta.format == Tegra::DepthFormat::S8Z24_UNORM ||
                         regs.zeta.format == Tegra::DepthFormat::V8Z24_UNORM;
-    if (is_d24 && !device.SupportsD24DepthBuffer() && program_id == 0x1006A800016E000ULL) {
-        // Only activate this in Super Smash Brothers Ultimate
+
+    // TODO(alekpop): this needs more games, perhaps, should be a vector.
+    // It may not be needed to filter by the game ID.
+    if (is_d24 && !device.SupportsD24DepthBuffer()
+        && (program_id == 0x1006A800016E000ULL || program_id == 0x0100C9F009F7A000ULL)) {
         // the base formulas can be obtained from here:
         //   https://docs.microsoft.com/en-us/windows/win32/direct3d11/d3d10-graphics-programming-guide-output-merger-stage-depth-bias
         const double rescale_factor =

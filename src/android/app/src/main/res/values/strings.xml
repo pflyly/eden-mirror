@@ -48,9 +48,9 @@
     <string name="frame_interpolation">Enhanced Frame Pacing</string>
     <string name="frame_interpolation_description">Ensures smooth and consistent frame delivery by synchronizing the timing between frames, reducing stuttering and uneven animation. Ideal for games that experience frame timing instability or micro-stutters during gameplay.</string>
     <string name="dyna_state">Extended Dynamic State</string>
-    <string name="dyna_state_description">Enables Vulkan features to improve performance, rendering, and save resources on pipeline creation while maintaining lower CPU/GPU usage. These extensions may increase device temperature, and GPUs belonging to the older A6XX line may not react properly. Set to 0 to use Legacy emulated formats.</string>
-    <string name="dyna_state3">EDS3 + VertexInputDynamicState</string>
-    <string name="dyna_state3_description">Improves performance on newer devices. Only supported on Vulkan 1.3+ GPUs.</string>
+    <string name="dyna_state_description">Enables Vulkan features to improve performance, rendering, and save resources on pipeline creation while maintaining lower CPU/GPU usage. These extensions may increase device temperature, and GPUs belonging to the older A6XX line may not react properly. Set to 0 to use Legacy emulated formats. Setting 3 will only work on new devices.</string>
+    <string name="vertex_input">VertexInputDynamicState</string>
+    <string name="vertex_input_description">Improves performance on newer devices. Only supported on Vulkan 1.3+ GPUs.</string>
     <string name="use_sync_core">Synchronize Core Speed</string>
     <string name="use_sync_core_description">Synchronize the core tick speed to the maximum speed percentage to improve performance without altering the game\'s actual speed.</string>
     <string name="use_auto_stub">Use Auto Stub</string>
@@ -361,6 +361,8 @@
     <string name="frame_limit_slider_description">Specifies the percentage to limit emulation speed. 100% is the normal speed. Values higher or lower will increase or decrease the speed limit.</string>
     <string name="cpu_backend">CPU backend</string>
     <string name="cpu_accuracy">CPU accuracy</string>
+    <string name="flush_by_line">Flush debug logs by line</string>
+    <string name="flush_by_line_description">Flushes debugging logs on each line written, making debugging easier in cases of crashing or freezing.</string>
     <string name="value_with_units">%1$s%2$s</string>
 
     <!-- System settings strings -->
@@ -411,6 +413,7 @@
     <string name="renderer_debug">Graphics debugging</string>
     <string name="renderer_debug_description">Sets the graphics API to a slow debugging mode.</string>
     <string name="fastmem">Fastmem</string>
+    <string name="log">Logging</string>
 
     <!-- Audio settings strings -->
     <string name="audio_output_engine">Output engine</string>

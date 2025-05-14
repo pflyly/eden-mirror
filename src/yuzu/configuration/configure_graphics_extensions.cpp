@@ -30,12 +30,14 @@ ConfigureGraphicsExtensions::~ConfigureGraphicsExtensions() = default;
 
 void ConfigureGraphicsExtensions::SetConfiguration() {}
 
-void ConfigureGraphicsExtensions::Setup(const ConfigurationShared::Builder& builder) {
+void ConfigureGraphicsExtensions::Setup(const ConfigurationShared::Builder& builder)
+{
     auto& layout = *ui->populate_target->layout();
     std::map<u32, QWidget*> hold{}; // A map will sort the data for us
 
     QSlider *dyna_state = nullptr;
-    QCheckBox *dyna_state3 = nullptr;
+    QCheckBox *vertex_input = nullptr;
+
     for (auto setting :
          Settings::values.linkage.by_category[Settings::Category::RendererExtensions]) {
         ConfigurationShared::Widget* widget = builder.BuildWidget(setting, apply_funcs);
@@ -54,8 +56,15 @@ void ConfigureGraphicsExtensions::Setup(const ConfigurationShared::Builder& buil
             widget->slider->setTickInterval(1);
             widget->slider->setTickPosition(QSlider::TicksAbove);
             dyna_state = widget->slider;
-        } else if (setting->Id() == Settings::values.dyna_state3.Id()) {
-            dyna_state3 = widget->checkbox;
+        } else if (setting->Id() == Settings::values.vertex_input.Id()) {
+            vertex_input = widget->checkbox;
+            int dynamic_state = Settings::values.dyna_state.GetValue();
+
+            // TODO(alekpop): I believe this is not required, it is a solo extension.
+            vertex_input->setEnabled(dynamic_state == 3);
+            if (dynamic_state < 3) {
+                vertex_input->setChecked(false);
+            }
         }
     }
 
@@ -63,10 +72,10 @@ void ConfigureGraphicsExtensions::Setup(const ConfigurationShared::Builder& buil
         layout.addWidget(widget);
     }
 
-    connect(dyna_state, &QSlider::sliderMoved, this, [dyna_state3](int value) {
-        dyna_state3->setEnabled(value == 2);
-        if (value < 2) {
-            dyna_state3->setChecked(false);
+    connect(dyna_state, &QSlider::sliderMoved, this, [vertex_input](int value) {
+        vertex_input->setEnabled(value == 3);
+        if (value < 3) {
+            vertex_input->setChecked(false);
         }
     });
 }
