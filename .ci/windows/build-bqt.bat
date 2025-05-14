@@ -20,10 +20,7 @@ cmake -S . -B build\%chain% ^
 -DYUZU_ENABLE_LTO=ON ^
 -G "Ninja" ^
 -DYUZU_TESTS=OFF ^
--DCMAKE_C_COMPILER_LAUNCHER=ccache ^
--DCMAKE_CXX_COMPILER_LAUNCHER=ccache ^
--DCMAKE_TOOLCHAIN_FILE="%CD%\CMakeModules\MSVCCache.cmake" ^
--DUSE_CCACHE=ON
+-DCMAKE_TOOLCHAIN_FILE="%CD%\CMakeModules\MSVCCache.cmake"
 
 cmake --build build\%chain%
 

@@ -22,10 +22,7 @@ CALL cmake -S . -B build\%chain% ^
 -G "Ninja" ^
 -DYUZU_TESTS=OFF ^
 -DQt6_DIR=C:\Qt\%qt_ver%\msvc2022_64 ^
--DCMAKE_C_COMPILER_LAUNCHER=ccache ^
--DCMAKE_CXX_COMPILER_LAUNCHER=ccache ^
--DCMAKE_TOOLCHAIN_FILE="%CD%\CMakeModules\MSVCCache.cmake" ^
--DUSE_CCACHE=ON
+-DCMAKE_TOOLCHAIN_FILE="%CD%\CMakeModules\MSVCCache.cmake"
 
 CALL cmake --build build\%chain%
 

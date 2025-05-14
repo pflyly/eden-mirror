@@ -26,7 +26,7 @@ fi
 
 if [ "$TARGET" = "appimage" ]; then
     # Compile the AppImage we distribute with Clang.
-    export EXTRA_CMAKE_FLAGS=(-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_LINKER=/etc/bin/ld.lld)
+    #export EXTRA_CMAKE_FLAGS=(-DCMAKE_LINKER=/usr/bin/mold)
     # Bundle required QT wayland libraries
     export EXTRA_QT_PLUGINS="waylandcompositor"
     export EXTRA_PLATFORM_PLUGINS="libqwayland-egl.so;libqwayland-generic.so"
@@ -35,18 +35,16 @@ else
     export EXTRA_CMAKE_FLAGS=(-DCITRA_USE_PRECOMPILED_HEADERS=OFF)
 fi
 
-if [ "$GITHUB_REF_TYPE" == "tag" ]; then
-	export EXTRA_CMAKE_FLAGS=($EXTRA_CMAKE_FLAGS -DENABLE_QT_UPDATE_CHECKER=ON)
-fi
+# TODO(crueter): update checker
+# if [ "$GITHUB_REF_TYPE" == "tag" ]; then
+# 	export EXTRA_CMAKE_FLAGS=($EXTRA_CMAKE_FLAGS -DENABLE_QT_UPDATE_CHECKER=ON)
+# fi
 
 mkdir -p build && cd build
 cmake .. -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_C_COMPILER_LAUNCHER=ccache \
-    -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
     -DENABLE_QT_TRANSLATION=ON \
     -DUSE_DISCORD_PRESENCE=ON \
-    -DUSE_CCACHE=ON \
     -DCMAKE_CXX_FLAGS="$ARCH_FLAGS" \
     -DCMAKE_C_FLAGS="$ARCH_FLAGS" \
     -DYUZU_USE_BUNDLED_VCPKG=OFF \
@@ -55,12 +53,10 @@ cmake .. -G Ninja \
     -DYUZU_USE_BUNDLED_SDL2=OFF \
     -DYUZU_USE_EXTERNAL_SDL2=ON \
     -DYUZU_TESTS=OFF \
-    -DYUZU_USE_LLVM_DEMANGLE=OFF \
     -DYUZU_USE_QT_MULTIMEDIA=OFF \
     -DYUZU_USE_QT_WEB_ENGINE=OFF \
-    -DYUZU_USE_FASTER_LD=OFF \
+    -DYUZU_USE_FASTER_LD=ON \
     -DYUZU_ENABLE_LTO=ON \
-    -DCMAKE_LINKER=/usr/bin/mold \
 	"${EXTRA_CMAKE_FLAGS[@]}"
 
 ninja -j${NPROC}
@@ -70,11 +66,3 @@ if [ -d "bin/Release" ]; then
 else
   strip -s bin/*
 fi
-
-if [ "$TARGET" = "appimage" ]; then
-    ccache -s
-else
-    ccache -s -v
-fi
-
-#ctest -VV -C Release
