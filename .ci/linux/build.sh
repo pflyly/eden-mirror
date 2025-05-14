@@ -25,14 +25,13 @@ if [ -z "$NPROC" ]; then
 fi
 
 if [ "$TARGET" = "appimage" ]; then
-    # Compile the AppImage we distribute with Clang.
-    #export EXTRA_CMAKE_FLAGS=(-DCMAKE_LINKER=/usr/bin/mold)
+    export EXTRA_CMAKE_FLAGS=(-DCMAKE_INSTALL_PREFIX=/usr)
     # Bundle required QT wayland libraries
     export EXTRA_QT_PLUGINS="waylandcompositor"
     export EXTRA_PLATFORM_PLUGINS="libqwayland-egl.so;libqwayland-generic.so"
 else
     # For the linux-fresh verification target, verify compilation without PCH as well.
-    export EXTRA_CMAKE_FLAGS=(-DCITRA_USE_PRECOMPILED_HEADERS=OFF)
+    export EXTRA_CMAKE_FLAGS=(-DYUZU_USE_PRECOMPILED_HEADERS=OFF)
 fi
 
 # TODO(crueter): update checker

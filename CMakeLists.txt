@@ -641,13 +641,15 @@ endif()
 # https://specifications.freedesktop.org/shared-mime-info-spec/shared-mime-info-spec-latest.html
 # https://www.freedesktop.org/software/appstream/docs/
 if(ENABLE_QT AND UNIX AND NOT APPLE)
-    install(FILES "dist/org.yuzu_emu.yuzu.desktop"
+    install(FILES "dist/eden.desktop"
         DESTINATION "share/applications")
     install(FILES "dist/eden.svg"
         DESTINATION "share/icons/hicolor/scalable/apps"
-        RENAME "org.yuzu_emu.eden.svg")
-    install(FILES "dist/org.yuzu_emu.yuzu.xml"
+        RENAME "eden.svg")
+
+        # TODO: these files need to be updated.
+    install(FILES "dist/eden.xml"
         DESTINATION "share/mime/packages")
-    install(FILES "dist/org.yuzu_emu.yuzu.metainfo.xml"
+    install(FILES "dist/eden.metainfo.xml"
         DESTINATION "share/metainfo")
 endif()
