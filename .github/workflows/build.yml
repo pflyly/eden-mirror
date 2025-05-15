@@ -102,7 +102,7 @@ jobs:
         run: ./.ci/linux/package.sh v3 &> /dev/null
 
       - name: Package Light AppImage
-        run: ./.ci/linux/package-light.sh build v3 &> /dev/null
+        run: ./.ci/linux/package-light.sh build v3
 
       - name: Upload Linux artifacts
         uses: forgejo/upload-artifact@v4
