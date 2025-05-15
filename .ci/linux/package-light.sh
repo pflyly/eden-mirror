@@ -42,9 +42,9 @@ echo "Adding update information \"$UPINFO\" to runtime..."
 # Turn AppDir into appimage
 echo "Generating AppImage..."
 ./uruntime --appimage-mkdwarfs -f --set-owner 0 --set-group 0 --no-history --no-create-timestamp --compression zstd:level=22 -S26 -B32 \
---header uruntime -i $BUILD_DIR/deploy-linux/AppDir -o Eden-"$VERSION"-"$ARCH".AppImage
+--header uruntime -i $BUILD_DIR/deploy-linux/AppDir -o Eden-Light-"$VERSION"-"$ARCH".AppImage
 
 echo "Generating zsync file..."
-zsyncmake Eden-"$VERSION"-"$ARCH".AppImage -u Eden-Light-"$VERSION"-"$ARCH".AppImage
+zsyncmake Eden-Light-"$VERSION"-"$ARCH".AppImage -u Eden-Light-"$VERSION"-"$ARCH".AppImage
 
 echo "All Done!"
