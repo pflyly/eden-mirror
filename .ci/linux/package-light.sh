@@ -45,6 +45,6 @@ echo "Generating AppImage..."
 --header uruntime -i $BUILD_DIR/deploy-linux/AppDir -o Eden-"$VERSION"-"$ARCH".AppImage
 
 echo "Generating zsync file..."
-zsyncmake Eden-"$VERSION"-"$ARCH".AppImage -u Eden-"$VERSION"-"$ARCH".AppImage
+zsyncmake Eden-"$VERSION"-"$ARCH".AppImage -u Eden-Light-"$VERSION"-"$ARCH".AppImage
 
 echo "All Done!"
