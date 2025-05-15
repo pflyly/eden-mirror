@@ -238,6 +238,15 @@ struct Values {
     SwitchableSetting<CpuAccuracy, true> cpu_accuracy{linkage,           CpuAccuracy::Auto,
                                                       CpuAccuracy::Auto, CpuAccuracy::Paranoid,
                                                       "cpu_accuracy",    Category::Cpu};
+
+    SwitchableSetting<bool> use_fast_cpu_time{linkage,
+                                              false,
+                                              "use_fast_cpu_time",
+                                              Category::Cpu,
+                                              Specialization::Default,
+                                              true,
+                                              true};
+
     SwitchableSetting<bool> cpu_debug_mode{linkage, false, "cpu_debug_mode", Category::CpuDebug};
 
     Setting<bool> cpuopt_page_tables{linkage, true, "cpuopt_page_tables", Category::CpuDebug};

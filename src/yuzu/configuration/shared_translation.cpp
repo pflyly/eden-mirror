@@ -80,6 +80,10 @@ std::unique_ptr<TranslationMap> InitializeTranslations(QWidget* parent) {
     INSERT(Settings, cpu_accuracy, tr("Accuracy:"),
            tr("This setting controls the accuracy of the emulated CPU.\nDon't change this unless "
               "you know what you are doing."));
+    INSERT(Settings,
+           use_fast_cpu_time,
+           tr("Use Fast CPU Time"),
+           tr("Overclocks the emulated CPU to 1700MHz to force maximum CPU speed."));
     INSERT(Settings, cpu_backend, tr("Backend:"), QStringLiteral());
 
     // Cpu Debug
