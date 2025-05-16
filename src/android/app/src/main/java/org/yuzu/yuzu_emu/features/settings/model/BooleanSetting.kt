@@ -8,6 +8,7 @@ import org.yuzu.yuzu_emu.utils.NativeConfig
 enum class BooleanSetting(override val key: String) : AbstractBooleanSetting {
     AUDIO_MUTED("audio_muted"),
     CPU_DEBUG_MODE("cpu_debug_mode"),
+    FAST_CPU_TIME("use_fast_cpu_time"),
     FASTMEM("cpuopt_fastmem"),
     FASTMEM_EXCLUSIVES("cpuopt_fastmem_exclusives"),
     CORE_SYNC_CORE_SPEED("sync_core_speed"),

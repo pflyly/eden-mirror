@@ -463,6 +463,7 @@ class SettingsFragmentPresenter(
             add(BooleanSetting.FRAME_SKIPPING.key)
             add(BooleanSetting.USE_LRU_CACHE.key)
             add(BooleanSetting.RENDERER_FAST_GPU.key)
+            add(BooleanSetting.FAST_CPU_TIME.key)
 
             add(ByteSetting.RENDERER_DYNA_STATE.key)
 

@@ -493,6 +493,13 @@ abstract class SettingsItem(
             )
             put(
                 SwitchSetting(
+                    BooleanSetting.FAST_CPU_TIME,
+                    titleId = R.string.use_fast_cpu_time,
+                    descriptionId = R.string.use_fast_cpu_time_description
+                )
+            )
+            put(
+                SwitchSetting(
                     BooleanSetting.RENDERER_REACTIVE_FLUSHING,
                     titleId = R.string.renderer_reactive_flushing,
                     descriptionId = R.string.renderer_reactive_flushing_description
