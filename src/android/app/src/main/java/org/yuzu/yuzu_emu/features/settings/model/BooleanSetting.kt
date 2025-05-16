@@ -41,12 +41,13 @@ enum class BooleanSetting(override val key: String) : AbstractBooleanSetting {
     SHOW_APP_RAM_USAGE("show_app_ram_usage"),
     SHOW_SYSTEM_RAM_USAGE("show_system_ram_usage"),
     SHOW_BAT_TEMPERATURE("show_bat_temperature"),
+    SHOW_SHADERS_BUILDING("show_shaders_building"),
     OVERLAY_BACKGROUND("overlay_background"),
-    DEBUG_FLUSH_BY_LINE("log_flush_lines"),
-    USE_LRU_CACHE("use_lru_cache"),;
+    DEBUG_FLUSH_BY_LINE("flush_lines"),
+    USE_LRU_CACHE("use_lru_cache");
+
     external fun isFrameSkippingEnabled(): Boolean
     external fun isFrameInterpolationEnabled(): Boolean
-
 
     override fun getBoolean(needsGlobal: Boolean): Boolean =
         NativeConfig.getBoolean(key, needsGlobal)

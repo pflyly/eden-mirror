@@ -12,8 +12,10 @@
     <!-- Stats Overlay settings -->
     <string name="enhanced_fps_suffix">(Enhanced)</string>
     <string name="skipping_fps_suffix">(Skipping)</string>
+    <string name="shaders_prefix">Building</string>
+    <string name="shaders_suffix">Shader(s)</string>
     <string name="system_info_label">System:</string>
-    <string name="show_stats_overlay">ShoW Performance Stats Overlay</string>
+    <string name="show_stats_overlay">Show Performance Stats Overlay</string>
     <string name="stats_overlay_customization">Customization</string>
     <string name="stats_overlay_items">Visibility</string>
     <string name="stats_overlay_options">Overlay</string>
@@ -31,6 +33,8 @@
     <string name="show_system_ram_usage_description">Display the amount of RAM used by the system</string>
     <string name="show_bat_temperature">Show Battery Temperature</string>
     <string name="show_bat_temperature_description">Display current Battery temperature in Celsius and Fahrenheit</string>
+    <string name="show_shaders_building">Show Shaders Building</string>
+    <string name="show_shaders_building_description">Display current number of shaders being built</string>
     <string name="overlay_position">Overlay Position</string>
     <string name="overlay_position_description">Choose where the performance stats overlay is displayed on the screen</string>
     <string name="overlay_position_top_left">Top Left</string>
@@ -369,6 +373,8 @@
     <string name="device_name">Device name</string>
     <string name="use_docked_mode">Docked Mode</string>
     <string name="use_docked_mode_description">Increases resolution, decreasing performance. Handheld Mode is used when disabled, lowering resolution and increasing performance.</string>
+    <string name="memory_layout">Memory Layout</string>
+    <string name="memory_layout_description">Change the emulated memory layout. This setting will not increase performance, but may help with games utilizing high resolutions via mods. Do not use on phones with 8GB of RAM or less.</string>
     <string name="emulated_region">Emulated region</string>
     <string name="emulated_language">Emulated language</string>
     <string name="select_rtc_date">Select RTC date</string>
@@ -682,6 +688,11 @@
     <string name="region_china">China</string>
     <string name="region_korea">Korea</string>
     <string name="region_taiwan">Taiwan</string>
+
+    <!-- Memory Layouts -->
+    <string name="memory_4gb">4GB (Recommended)</string>
+    <string name="memory_6gb">6GB (Unsafe)</string>
+    <string name="memory_8gb">8GB (Unsafe)</string>
 
     <!-- Language Names -->
     <string name="language_japanese" translatable="false">日本語</string>

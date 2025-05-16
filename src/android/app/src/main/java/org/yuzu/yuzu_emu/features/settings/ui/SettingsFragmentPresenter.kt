@@ -250,6 +250,7 @@ class SettingsFragmentPresenter(
             add(BooleanSetting.RENDERER_USE_SPEED_LIMIT.key)
             add(ShortSetting.RENDERER_SPEED_LIMIT.key)
             add(BooleanSetting.USE_DOCKED_MODE.key)
+            add(IntSetting.MEMORY_LAYOUT.key)
             add(IntSetting.REGION_INDEX.key)
             add(IntSetting.LANGUAGE_INDEX.key)
             add(BooleanSetting.USE_CUSTOM_RTC.key)
@@ -290,6 +291,7 @@ class SettingsFragmentPresenter(
             add(BooleanSetting.SHOW_APP_RAM_USAGE.key)
             add(BooleanSetting.SHOW_SYSTEM_RAM_USAGE.key)
             add(BooleanSetting.SHOW_BAT_TEMPERATURE.key)
+            add(BooleanSetting.SHOW_SHADERS_BUILDING.key)
         }
 
     }

@@ -246,6 +246,15 @@ abstract class SettingsItem(
                 )
             )
             put(
+                SingleChoiceSetting(
+                    IntSetting.MEMORY_LAYOUT,
+                    titleId = R.string.memory_layout,
+                    descriptionId = R.string.memory_layout_description,
+                    choicesId = R.array.memoryNames,
+                    valuesId = R.array.memoryValues
+                )
+            )
+            put(
                  SwitchSetting(
                      BooleanSetting.CORE_SYNC_CORE_SPEED,
                      titleId = R.string.use_sync_core,
@@ -402,6 +411,13 @@ abstract class SettingsItem(
                     BooleanSetting.SHOW_BAT_TEMPERATURE,
                     R.string.show_bat_temperature,
                     descriptionId = R.string.show_bat_temperature_description
+                )
+            )
+            put(
+                SwitchSetting(
+                    BooleanSetting.SHOW_SHADERS_BUILDING,
+                    R.string.show_shaders_building,
+                    descriptionId = R.string.show_shaders_building_description
                 )
             )
             put(
