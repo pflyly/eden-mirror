@@ -4,6 +4,7 @@
 #include <atomic>
 #include <chrono>
 #include <climits>
+#include <regex>
 #include <thread>
 
 #include <fmt/ranges.h>
@@ -104,9 +105,23 @@ public:
             return;
         }
 
-        bytes_written += file->WriteString(FormatLogMessage(entry).append(1, '\n'));
+        auto message = FormatLogMessage(entry).append(1, '\n');
 
-               // Option to log each line rather than 4k buffers
+#ifndef ANDROID
+        if (Settings::values.censor_username.GetValue()) {
+            char* username = getenv("USER");
+            if (!username) {
+                username = getenv("USERNAME");
+            }
+
+            std::regex regex(username);
+            message = std::regex_replace(message, regex, "user");
+        }
+#endif
+
+        bytes_written += file->WriteString(message);
+
+        // Option to log each line rather than 4k buffers
         if (Settings::values.log_flush_lines.GetValue()) {
             file->Flush();
         }
