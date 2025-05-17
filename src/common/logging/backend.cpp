@@ -7,6 +7,7 @@
 #include <regex>
 #include <thread>
 
+#include <boost/algorithm/string/replace.hpp>
 #include <fmt/ranges.h>
 
 #ifdef _WIN32
@@ -113,9 +114,7 @@ public:
             if (!username) {
                 username = getenv("USERNAME");
             }
-
-            std::regex regex(username);
-            message = std::regex_replace(message, regex, "user");
+            boost::replace_all(message, username, "user");
         }
 #endif
 
