@@ -452,6 +452,7 @@ endif()
 
 if (WIN32 AND NOT YUZU_USE_BUNDLED_QT AND QT_VERSION VERSION_GREATER_EQUAL 6)
     set(YUZU_EXE_DIR "$<TARGET_FILE_DIR:yuzu>")
+    message(STATUS "WINDEPLOYQT EXECUTABLE: ${WINDEPLOYQT_EXECUTABLE}")
     add_custom_command(TARGET yuzu POST_BUILD COMMAND ${WINDEPLOYQT_EXECUTABLE} "${YUZU_EXE_DIR}/eden.exe" --dir "${YUZU_EXE_DIR}" --libdir "${YUZU_EXE_DIR}" --plugindir "${YUZU_EXE_DIR}/plugins" --no-compiler-runtime --no-opengl-sw --no-system-d3d-compiler --no-translations --verbose 0)
 endif()
 
@@ -467,9 +468,11 @@ endif()
 
 if (MSVC)
     include(CopyYuzuSDLDeps)
-    include(CopyYuzuFFmpegDeps)
     copy_yuzu_SDL_deps(yuzu)
-    copy_yuzu_FFmpeg_deps(yuzu)
+    if (ARCHITECTURE_x86_64)
+        include(CopyYuzuFFmpegDeps)
+        copy_yuzu_FFmpeg_deps(yuzu)
+    endif()
 endif()
 
 if (NOT APPLE AND ENABLE_OPENGL)

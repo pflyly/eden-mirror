@@ -6,6 +6,7 @@
 #include <thread>
 
 #include <boost/asio.hpp>
+#include <boost/version.hpp>
 #include <boost/process/async_pipe.hpp>
 
 #include "common/logging/log.h"
