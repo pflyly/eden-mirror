@@ -85,9 +85,10 @@
     <string name="multiplayer">Multiplayer</string>
     <string name="multiplayer_description">Host your own game room or join an existing one to play with people</string>
     <string name="multiplayer_room_title">Room: %1$s</string>
-    <string name="multiplayer_console_id">Console ID: %1$s</string>
+    <string name="multiplayer_console_id">Console ID：%1$s</string>
     <string name="multiplayer_create_room">Create</string>
     <string name="multiplayer_join_room">Join</string>
+    <string name="multiplayer_public_room">Browse Public Rooms</string>
     <string name="multiplayer_username">Username</string>
     <string name="multiplayer_ip_address">IP Address</string>
     <string name="multiplayer_ip_port">Port</string>
@@ -148,9 +149,26 @@
     <string name="multiplayer_unban">Unban</string>
     <string name="multiplayer_unban_message">Are you sure you want to unban %1$s?</string>
     <string name="multiplayer_ban">Ban User</string>
+    <string name="multiplayer_room_browser">Public Rooms</string>
+    <string name="multiplayer_no_rooms_found">No public rooms found</string>
+    <string name="multiplayer_password_required">Password Required</string>
+    <string name="multiplayer_player_count">: %1$d/%2$d</string>
+    <string name="multiplayer_game">Game</string>
+    <string name="multiplayer_no_game_info">Any Game</string>
+    <string name="multiplayer_password_protected">Password protected room</string>
+    <string name="multiplayer_hide_full_rooms">Hide Full Rooms</string>
+    <string name="multiplayer_hide_empty_rooms">Hide Empty Rooms</string>
+    <string name="multiplayer_tap_refresh_to_check_again">Tap refresh to check again</string>
+    <string name="multiplayer_search_public_lobbies">Search Public Lobbies…</string>
     <string name="emulation_multiplayer">Multiplayer</string>
+    <string name="multiplayer_game_name">Preferred Games</string>
+    <string name="multiplayer_preferred_game_name">Preferred Game</string>
+    <string name="multiplayer_no_game">No Games Found</string>
+    <string name="multiplayer_preferred_game_name_invalid">You must choose a Preferred Game to host a room.</string>
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
+    <string name="refresh">Refresh</string>
+    <string name="room_list">Room List</string>
 
     <!-- Setup strings -->
     <string name="welcome">Welcome!</string>

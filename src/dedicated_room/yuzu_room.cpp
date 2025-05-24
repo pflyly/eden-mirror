@@ -4,7 +4,7 @@
 // SPDX-FileCopyrightText: Copyright yuzu/Citra Emulator Project
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-// SPDX-FileCopyrightText: 2025 eden Emulator Project
+// SPDX-FileCopyrightText: 2025 Eden Emulator Project
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include <chrono>
@@ -373,9 +373,8 @@ void LaunchRoom(int argc, char** argv, bool called_by_option)
         verify_backend = std::make_unique<Network::VerifyUser::NullBackend>();
     }
 
-    Network::RoomNetwork network{};
-    network.Init();
-    if (auto room = network.GetRoom().lock()) {
+    Network::Init();
+    if (auto room = Network::GetRoom().lock()) {
         AnnounceMultiplayerRoom::GameInfo preferred_game_info{.name = preferred_game,
                                                               .id = preferred_game_id};
         if (!room->Create(room_name, room_description, bind_address, static_cast<u16>(port),
@@ -385,7 +384,7 @@ void LaunchRoom(int argc, char** argv, bool called_by_option)
             std::exit(-1);
         }
         LOG_INFO(Network, "Room is open. Close with Q+Enter...");
-        auto announce_session = std::make_unique<Core::AnnounceMultiplayerSession>(network);
+        auto announce_session = std::make_unique<Core::AnnounceMultiplayerSession>();
         if (announce) {
             announce_session->Start();
         }
